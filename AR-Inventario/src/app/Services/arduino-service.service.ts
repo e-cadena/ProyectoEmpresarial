@@ -7,10 +7,15 @@ import { HttpClient, HttpHeaders }from '@angular/common/http';
 export class ArduinoServiceService {
 
   url:string = "http://192.168.7.85:3000"
+  //url:string = "localhost"
   constructor(private http: HttpClient) { }
 
   
- 
+  //Inicio
+  getValue(ProductoService)  {
+    return ProductoService.nombreProducto
+  }
+
   //Producto
   getProducto(){
     return this.http.get(this.url+"/Producto")
@@ -26,7 +31,7 @@ export class ArduinoServiceService {
   }
 
   update(product){
-    product.nombreProducto = "Raspberry"
+    product.nombreProducto = "Arduino"
     return this.http.get(
       this.url+"/Producto/update", {params: {
         product: JSON.stringify(product)

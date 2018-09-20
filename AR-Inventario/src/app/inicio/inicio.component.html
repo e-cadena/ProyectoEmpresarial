@@ -2,12 +2,19 @@
     <h2>Inicio</h2>
     <br>
       <!--buscador de la aplicación-->
-      <input type="text" id="searchTextId" [(ngModel)]="searchText" name="searchText" placeholder="Buscar">
-      <button>Buscar</button>
-    <br>
-    <br>
-    <div class="col">
-        <button type="button" class="btn btn-primary" (click)="get()">Obtener </button>
+      <div class="container">
+        <div class="row">
+          <div class="col">
+          <br/>
+            <label><h3>Aquí puede buscar de forma más rápida</h3> </label>
+            <input class="typeahead form-control" type="text" placeholder="Busqueda">
+            <br/>
+            <button type="button" class="btn btn-primary" (click)="get()">Obtener </button>
+          </div>
+        </div>
+        
+      </div>
+    <div class="col">   
       </div>
       <br>
     <table class=table class="table">

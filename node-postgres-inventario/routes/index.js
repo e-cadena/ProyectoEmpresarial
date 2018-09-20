@@ -4,6 +4,7 @@ const Sequelize = require('sequelize');
 
 const sequelize = new Sequelize('Inventario', 'postgres', '1234', {
   host: '192.168.7.133',
+  //host: 'localhost',
   dialect: 'postgres',
   operatorsAliases: false,
 
@@ -294,7 +295,7 @@ router.get('/Usuario/add', function(req, res, next) {
 router.get('/Usuario/update', function(req, res, next) {
   User.findById(7).then(userId =>{
     if(userId != null){
-      userId.update({usuario:"Pepito",contraseña: userId.contraseña})
+      userId.update({usuario:"Lucho",contraseña: userId.contraseña})
         .then(update =>{
           res.send(update);
         })
@@ -1007,13 +1008,21 @@ router.get('/Proveedor/delete', function(req, res, next) {
  });
 });
 
+
+//Consultas de prueba.
 router.get('/User/consulta', function(req, res, next){
   sequelize.query('SELECT * FROM User', { model: User })
-  .then(usuario => {
-    console.log(usuario)
+  .then(User => {
+    console.log(User)
   }); 
-})
+});
 
+router.get('Producto/cons', function(req,res, next){
+  sequelize.query('SELECT Producto_id FROM Productos', {model: Producto})
+  .then(Producto => {
+    console.log(Producto)
+  });
+});
 
 /* 
 router.get('Producto/consulta', function(req, res, next){
@@ -1023,12 +1032,58 @@ router.get('Producto/consulta', function(req, res, next){
    })
  })
 
- router.get('Factura/consulta', function(req, res, next){
+router.get('Factura/consulta', function(req, res, next){
    sequelize.query('SELECT * FROM Factura', {model: Factura})
    .then(factura => {
      console.log(factura)
    })
  })
- */
+ 
+//buscador
+router.get('/Producto/busqueda', function(req, res, next){
+  sequelize.query('SELECT * FROM Productos WHERE nombreProducto LIKE :search_nombreProducto ',{
+  replacements: { search_nombreProducto: 'Ard%'  }, type: sequelize.QueryTypes.SELECT }
+  ).then(Product => {
+  console.log(Product)
+  }); 
+});
+  */
+
+
+// funciones para añadir columnas a las tablas para el buscador.
+ module.exports = {
+  up: function (queryInterface, Sequelize) {
+    return [
+        queryInterface.addColumn(
+          'Plataforma',
+          'palabraClave',
+          {
+            type: Sequelize.STRING,
+            allowNull: false,
+            //defaultValue: Arduino
+          }
+        ),
+        queryInterface.addColumn(
+          'Producto',
+          'palabraClave',
+          {
+            type: Sequelize.STRING,
+            allowNull: false,
+            //defaultValue: Sensor
+          }
+        ),
+        queryInterface.addColumn(
+          'Proveedor',
+          'palabraClave',
+          {
+            type: Sequelize.STRING,
+            allowNull: false,
+            //defaultValue: ElectronicaNacional
+          }
+        ),
+    ]
+  }
+}
+
 
 module.exports = router;

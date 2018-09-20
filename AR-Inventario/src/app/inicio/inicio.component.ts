@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { InicioService } from '../Services/inicio.service';
 import { ArduinoComp } from '../Interfaces/arduino-comp';
-import { Producto } from '../Interfaces/producto';
+//import { Producto } from '../Interfaces/producto';
 import { ArduinoServiceService } from '../Services/arduino-service.service';
+import { ProductoService } from '../Services/producto.service';
 
 @Component({
   selector: 'app-inicio',
@@ -16,12 +17,10 @@ export class InicioComponent implements OnInit {
     version: '',
     direccion: ''
   }
- 
-  titulo = 'AR-Inventario'
-  producto: Producto = {
+
+  product: any = {
     id: 0,
-    nombreProducto: '',
-    precioUnitario: 0 
+    nombreProducto: ''
   };
   
   constructor(public inicioServ:InicioService, public arduinoServ:ArduinoServiceService) { }
@@ -30,20 +29,24 @@ export class InicioComponent implements OnInit {
     console.log(inic)
   }
 
-  
   ngOnInit() {
-    
-  }
-  
 
+   }
+  
   productosList:any;
 
-
- 
   enviar(comp: ArduinoComp) {
     console.log(comp);
   }
 
+  //funciones del buscador y filtrado.
+  getB(){
+    this.arduinoServ.getValue(ProductoService).subscribe((result) =>{
+      console.log(result);
+      this.productosList =result
+    })
+  }
+  
   //funciones producto
   get(){
     this.arduinoServ.getProducto().subscribe((result)=>{
@@ -60,7 +63,6 @@ export class InicioComponent implements OnInit {
   }
 
   update(product){
-    //console.log(product);
     this.arduinoServ.update(product).subscribe((result) =>{
       console.log("Actualizado:" + result);
       this.get();
@@ -84,6 +86,6 @@ export class InicioComponent implements OnInit {
     });
     return idInic
   }
-
+  
    
 }
