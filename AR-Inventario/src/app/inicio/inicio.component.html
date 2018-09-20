@@ -1,0 +1,41 @@
+<div class="container">
+    <h2>Inicio</h2>
+    <br>
+      <!--buscador de la aplicación-->
+      <input type="text" id="searchTextId" [(ngModel)]="searchText" name="searchText" placeholder="Buscar">
+      <button>Buscar</button>
+    <br>
+    <br>
+    <div class="col">
+        <button type="button" class="btn btn-primary" (click)="get()">Obtener </button>
+      </div>
+      <br>
+    <table class=table class="table">
+      <thead class="thead-dark">
+        <tr> 
+          <th>id</th> 
+          <th>Usuario</th>
+          <th>Cantidad</th>
+          <th>Nombre Producto</th>
+          <th>Placa</th>
+          <th>Version</th>
+          <th>Proveedor</th>
+          <th>Eliminar</th>
+          <th>Actualizar</th>
+        </tr>
+      </thead>
+        <tbody>
+          <tr *ngFor="let product of productosList"  >
+                <td>{{product.id}}</td>
+                <td>{{product.usuario}}</td>
+                <td>{{product.cantidad}}</td>
+                <td>{{product.nombreProducto}}</td>
+                <td>{{producto.placa}}</td>
+                <td>{{producto.version}}</td>
+                <td>{{producto.proveedor}}</td>
+                <td><button type="button" class="btn btn-primary" (click)="delete(product.id)">Eliminar </button></td>
+                <td><button type="button" class="btn btn-primary" (click)="update(product)">Actualizar </button></td>
+          </tr>      
+        </tbody>
+      </table>
+

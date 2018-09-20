@@ -1,0 +1,10 @@
+{
+  "development": {
+  "username": "postgres",
+  "password": "1234",
+  "database": "Inventario",
+  "host": "192.168.7.133",
+  "dialect": "postgres",
+  "port": "5432"
+  }
+  }
