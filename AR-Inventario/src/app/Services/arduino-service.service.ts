@@ -16,6 +16,7 @@ export class ArduinoServiceService {
     return ProductoService.nombreProducto
   }
 
+  
   //Producto
   getProducto(){
     return this.http.get(this.url+"/Producto")

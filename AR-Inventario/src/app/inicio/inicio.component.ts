@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { InicioService } from '../Services/inicio.service';
 import { ArduinoComp } from '../Interfaces/arduino-comp';
-//import { Producto } from '../Interfaces/producto';
+import { Producto } from '../Interfaces/producto';
 import { ArduinoServiceService } from '../Services/arduino-service.service';
 import { ProductoService } from '../Services/producto.service';
 

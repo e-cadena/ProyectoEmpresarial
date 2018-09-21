@@ -1011,32 +1011,38 @@ router.get('/Proveedor/delete', function(req, res, next) {
 
 //Consultas de prueba.
 router.get('/User/consulta', function(req, res, next){
-  sequelize.query('SELECT * FROM User', { model: User })
-  .then(User => {
-    console.log(User)
-  }); 
+  User.findById(1,{ attributes: ['usuario'] })
+  .then(user => {
+    console.log(user)
+  })
+  .catch(err => {
+    console.log(err)
+  })
 });
 
-router.get('Producto/cons', function(req,res, next){
-  sequelize.query('SELECT Producto_id FROM Productos', {model: Producto})
-  .then(Producto => {
-    console.log(Producto)
-  });
-});
+router.get('Producto/consulta', function(req,res, next){
+  Producto.findAll(
+    where = {
+      nombreProducto: 'Arduino'
+    }
+  )
+  .then(product =>{
+    console.log(product.toJSON())
+  })
+  .catch(err =>{
+    console.log(err)
+  })
+})
 
 /* 
-router.get('Producto/consulta', function(req, res, next){
-   sequelize.query('SELECT * FROM Productos', { model: Producto})
-   .then(product => {
-     console.log(product)
-   })
- })
-
 router.get('Factura/consulta', function(req, res, next){
-   sequelize.query('SELECT * FROM Factura', {model: Factura})
-   .then(factura => {
-     console.log(factura)
-   })
+    Factura.findById(1,{ atributes: ['total']})
+  .then(factura =>{
+    console.log(factura)
+  })
+  .catch(err =>{
+    console.log(err)
+  })
  })
  
 //buscador
@@ -1047,8 +1053,7 @@ router.get('/Producto/busqueda', function(req, res, next){
   console.log(Product)
   }); 
 });
-  */
-
+  
 
 // funciones para añadir columnas a las tablas para el buscador.
  module.exports = {
@@ -1084,6 +1089,6 @@ router.get('/Producto/busqueda', function(req, res, next){
     ]
   }
 }
-
+*/
 
 module.exports = router;
