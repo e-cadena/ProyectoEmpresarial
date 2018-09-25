@@ -1,15 +1,18 @@
-<!-- botones de cambio -->
-<br>
-<div class="btn-group" role="group" aria-label="Basic example">
-  <button type="button" class="btn btn-primary"(click)="changeTab(0)">Inicio</button>
-  <button type="button" class="btn btn-primary"(click)="changeTab(1)">Producto</button>
-  <button type="button" class="btn btn-primary"(click)="changeTab(2)">Proveedores</button>
-  <button type="button" class="btn btn-primary"(click)="changeTab(3)">Plataforma</button>
+
+<button type="button" class="btn btn-primary">Cerrar Sesion</button>
+<div>
+    <!-- botones de cambio -->
+    <div class="btn-group" role="group" aria-label="Basic example">
+      <button type="button" class="btn btn-primary"(click)="changeTab(0)">Inicio</button>
+      <button type="button" class="btn btn-primary"(click)="changeTab(1)">Producto</button>
+      <button type="button" class="btn btn-primary"(click)="changeTab(2)">Proveedores</button>
+      <button type="button" class="btn btn-primary"(click)="changeTab(3)">Plataforma</button>
+    </div>
+      
+      <app-inicio *ngIf="inTab == 0" ></app-inicio>
+      <app-producto  *ngIf="inTab == 1"></app-producto>
+      <app-proveedor *ngIf="inTab == 2"></app-proveedor>
+      <app-plataforma *ngIf="inTab == 3"></app-plataforma>
 </div>
 
-<app-inicio *ngIf="inTab == 0" ></app-inicio>
-<app-producto  *ngIf="inTab == 1"></app-producto>
-<app-proveedor *ngIf="inTab == 2"></app-proveedor>
-<app-plataforma *ngIf="inTab == 3"></app-plataforma>
 
-    

@@ -312,7 +312,7 @@ router.get('/Usuario/update', function(req, res, next) {
 
 //Usuarios/delete -> eliminar el usuario cualquiera
 router.get('/Usuario/delete', function(req, res, next) {
-   User.findById(4).then(userId =>{
+   User.findById(9).then(userId =>{
     if(userId != null){ 
     userId.destroy()
      .then(destroy =>{
@@ -634,12 +634,12 @@ router.get('/Inicio/add', function(req, res, next) {
   let proveedor = JSON.parse(req.query.proveedor)
   Inicio.build({
           nombreProveedor: proveedor.nombreProveedor,
-          direccion: proveedor.direccion,
-          telefono: proveedor.telefono,
-          horario: proveedor.horario,
-          contactosWeb: proveedor.contactosWeb,
-          sucursal: proveedor.sucursal,
-          sector: proveedor.sector})
+          direccion:       proveedor.direccion,
+          telefono:        proveedor.telefono,
+          horario:         proveedor.horario,
+          contactosWeb:    proveedor.contactosWeb,
+          sucursal:        proveedor.sucursal,
+          sector:          proveedor.sector})
   .save(Inicio)
   .then(Inicio => {
     res.send(Inicio);
@@ -763,8 +763,8 @@ router.get('/Producto/update', function(req, res, next) {
       Producto.update({
         nombreProducto: producto.nombreProducto,
         precioUnitario: producto.precioUnitario, 
-        tipo_id: producto.tipo_id, 
-        plataforma_id: producto.plataforma_id})
+        tipo_id:        producto.tipo_id, 
+        plataforma_id:  producto.plataforma_id})
         .then(update =>{
           res.send(update);
         })
@@ -962,12 +962,12 @@ router.get('/Proveedor/update', function(req, res, next) {
    if(Proveedor != null){
      Proveedor.update({ 
              nombreProveedor: proveedor.nombreProveedor,
-             direccion: proveedor.direccion,
-             telefono: proveedor.telefono,
-             horario: proveedor.horario,
-             contactosWeb: proveedor.contactosWeb,
-             sucursal: proveedor.sucursal,
-             sector: proveedor.sector})
+             direccion:       proveedor.direccion,
+             telefono:        proveedor.telefono,
+             horario:         proveedor.horario,
+             contactosWeb:    proveedor.contactosWeb,
+             sucursal:        proveedor.sucursal,
+             sector:          proveedor.sector})
        .then(update =>{
          res.send(update);
        })
@@ -992,103 +992,55 @@ router.get('/Proveedor/delete', function(req, res, next) {
  // to the API (e.g. in case you use sessions)
  res.setHeader('Access-Control-Allow-Credentials', true);
  Proveedor.findById(req.query.id).then(Proveedor =>{
-   if(Proveedor != null){ 
-     Proveedor.destroy()
-    .then(destroy =>{
-      res.send(destroy)
-    })
-    .catch(error => {
-     console.log(error)
-   });
- }else{
-   res.send({error: "No encontrado para eliminar"});
-   }
- }).catch(error => {
-   console.log(error)
- });
+  if(Proveedor != null){ 
+    Proveedor.destroy()
+  .then(destroy =>{
+    res.send(destroy)
+  })
+  .catch(error => {
+    console.log(error)
+  });
+  }else{
+    res.send({error: "No encontrado para eliminar"});
+    }
+  }).catch(error => {
+    console.log(error)
+  });
 });
 
 
-//Consultas de prueba.
+//Consultas a labase de datos.
 router.get('/User/consulta', function(req, res, next){
-  User.findById(1,{ attributes: ['usuario'] })
+  User.findById(1,{ attributes: ['usuario', 'contraseña'] })
   .then(user => {
-    console.log(user)
+    console.log(user.dataValues)
+    res.send({response: user.dataValues});
   })
   .catch(err => {
     console.log(err)
+    res.send({error: err});
   })
 });
 
-router.get('Producto/consulta', function(req,res, next){
-  Producto.findAll(
-    where = {
-      nombreProducto: 'Arduino'
-    }
-  )
-  .then(product =>{
-    console.log(product.toJSON())
+router.get('/User/consultas', function(req,res, next){
+  User.findAll({ where:{ usuario: "Diego", contraseña: "1234"}})
+  .then(user =>{
+    res.send(user)
   })
   .catch(err =>{
-    console.log(err)
+    res.send(err)
   })
 })
 
-/* 
-router.get('Factura/consulta', function(req, res, next){
-    Factura.findById(1,{ atributes: ['total']})
-  .then(factura =>{
-    console.log(factura)
+
+router.get('/Producto/consulta', function(req,res, next){
+  Producto.findAll({ where:{ nombreProducto: "Arduino"}})
+  .then(product =>{
+    res.send(product)
   })
   .catch(err =>{
-    console.log(err)
+    res.send(err)
   })
- })
- 
-//buscador
-router.get('/Producto/busqueda', function(req, res, next){
-  sequelize.query('SELECT * FROM Productos WHERE nombreProducto LIKE :search_nombreProducto ',{
-  replacements: { search_nombreProducto: 'Ard%'  }, type: sequelize.QueryTypes.SELECT }
-  ).then(Product => {
-  console.log(Product)
-  }); 
-});
-  
-
-// funciones para añadir columnas a las tablas para el buscador.
- module.exports = {
-  up: function (queryInterface, Sequelize) {
-    return [
-        queryInterface.addColumn(
-          'Plataforma',
-          'palabraClave',
-          {
-            type: Sequelize.STRING,
-            allowNull: false,
-            //defaultValue: Arduino
-          }
-        ),
-        queryInterface.addColumn(
-          'Producto',
-          'palabraClave',
-          {
-            type: Sequelize.STRING,
-            allowNull: false,
-            //defaultValue: Sensor
-          }
-        ),
-        queryInterface.addColumn(
-          'Proveedor',
-          'palabraClave',
-          {
-            type: Sequelize.STRING,
-            allowNull: false,
-            //defaultValue: ElectronicaNacional
-          }
-        ),
-    ]
-  }
-}
-*/
+})
 
 module.exports = router;

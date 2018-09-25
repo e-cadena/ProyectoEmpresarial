@@ -11,7 +11,7 @@ import { Producto } from './Interfaces/producto';
 })
 export class AppComponent {
   title = 'AR-Inventario';
-  
+ 
   inTab:number = 0;
   
   changeTab(num:any){

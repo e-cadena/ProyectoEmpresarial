@@ -11,7 +11,7 @@
               <th>id</th> 
               <th>Nombre Producto</th>
               <th>Precio Unitario</th>
-              <th>plataforma_id</th>
+              <th>plataforma_placa</th>
               <th>Eliminar</th>
               <th>Actualizar</th>
             </tr>
@@ -21,7 +21,7 @@
                     <td>{{product.id}}</td>
                     <td>{{product.nombreProducto}}</td>
                     <td>{{product.precioUnitario}}</td>
-                    <td>{{product.plataforma_id}}</td>
+                    <td>{{product.plataforma_placa}}</td>
                     <td><button type="button" class="btn btn-primary" (click)="delete(product.id)">Eliminar </button></td>
                     <td><button type="button" class="btn btn-primary" (click)="update(product)">Actualizar </button></td>
               </tr>      
@@ -62,11 +62,11 @@
             </div>
             <div class="col">
                 <div class="form-group">
-                  <label for="plataforma_id">plataforma_id</label>
+                  <label for="placa">placa</label>
                 </div>
                 <!--drop down list-->
-                <select [(ngModel)]="product.plataforma_id" (change)="onSelectProducto($event)" style="width: 120px" [ngModelOptions]="{standalone: true}">
-                    <option *ngFor="let plataforma of plataformaList" [ngValue]="plataforma.id">{{plataforma.placa}}</option>   
+                <select [(ngModel)]="product.placa" (change)="onSelectProducto($event)" style="width: 120px" [ngModelOptions]="{standalone: true}">
+                    <option *ngFor="let plataforma of plataformaList" [ngValue]="plataforma.placa">{{plataforma.placa}}</option>   
                 </select>
             </div>
           </form>

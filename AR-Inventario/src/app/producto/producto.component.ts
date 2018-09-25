@@ -17,7 +17,7 @@ export class ProductoComponent implements OnInit {
     id: 0,
     nombreProducto: '',
     precioUnitario: 0 ,
-    plataforma_id: 0
+    plataforma_placa: 0
   };
   
   constructor(public productoServ:ProductoService, public arduinoServ:ArduinoServiceService) { }
@@ -34,7 +34,6 @@ export class ProductoComponent implements OnInit {
 
 
   plataformaList: any;
-
   getPlataforma(){
     this.arduinoServ.getPlataforma().subscribe((result)=>{
       console.log(result);
@@ -48,6 +47,7 @@ export class ProductoComponent implements OnInit {
     this.arduinoServ.getProducto().subscribe((result)=>{
       console.log(result);
       this.productosList = result;
+      
     })
   }
 
