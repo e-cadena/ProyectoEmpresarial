@@ -1,12 +1,12 @@
 
-<button type="button" class="btn btn-primary">Cerrar Sesion</button>
-<div>
+<div *ngIf="!ingreso">  
     <!-- botones de cambio -->
     <div class="btn-group" role="group" aria-label="Basic example">
       <button type="button" class="btn btn-primary"(click)="changeTab(0)">Inicio</button>
       <button type="button" class="btn btn-primary"(click)="changeTab(1)">Producto</button>
       <button type="button" class="btn btn-primary"(click)="changeTab(2)">Proveedores</button>
       <button type="button" class="btn btn-primary"(click)="changeTab(3)">Plataforma</button>
+      <button type="button" class="btn btn-primary"(click)="Cerrar()">Cerrar Sesion</button>
     </div>
       
       <app-inicio *ngIf="inTab == 0" ></app-inicio>
@@ -14,5 +14,23 @@
       <app-proveedor *ngIf="inTab == 2"></app-proveedor>
       <app-plataforma *ngIf="inTab == 3"></app-plataforma>
 </div>
+<!--Login-->
+<div *ngIf="ingreso">
+    <div class="card mt-5" style="margin:auto;width: 600px;">
+        <div class="card-body">
+          <h5 class="card-title">Inicio de sesión</h5>
+        <div class="form-group">
+          <label for="usuario">Usuario</label>
+          <input type="text" class="form-control" id="usuario" placeholder="Ingrese su nombre de usuario" [(ngModel)]="user.usuario" [ngModelOptions]="{standalone: true}">
+        </div>
+        <div class="form-group">
+          <label for="password">Contraseña</label>
+          <input type="password" class="form-control" id="password" placeholder="Ingrese su contraseña" [(ngModel)]="user.password" [ngModelOptions]="{standalone: true}">
+        </div>
+        <button type="submit" class="btn btn-primary" (click)="Ingresar(user)">Ingresar</button>
+        </div>
+      </div> 
+</div>
 
+    
 

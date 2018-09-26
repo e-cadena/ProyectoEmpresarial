@@ -10,13 +10,11 @@ export class ArduinoServiceService {
   //url:string = "localhost"
   constructor(private http: HttpClient) { }
 
-  
   //Inicio
   getValue(ProductoService)  {
     return ProductoService.nombreProducto
   }
 
-  
   //Producto
   getProducto(){
     return this.http.get(this.url+"/Producto")
@@ -105,6 +103,7 @@ export class ArduinoServiceService {
   getPlataforma(){
     return this.http.get(this.url+"/Plataforma")
   }
+
   addPlataforma(plataforma){
     return this.http.get(
       this.url+"/Plataforma/add", {params: {
@@ -142,49 +141,49 @@ export class ArduinoServiceService {
     });
   }
   
-    //Inicio
-    addInicio(inicio){
-      return this.http.get(
-        this.url+"/Plataforma/add", {params: {
-          inicio: JSON.stringify(inicio)
-      },
-        observe: 'response'
-      });
-    }
+  //Inicio
+  addInicio(inicio){
+    return this.http.get(
+      this.url+"/Plataforma/add", {params: {
+        inicio: JSON.stringify(inicio)
+    },
+      observe: 'response'
+    });
+  }
   
-    updateInicio(plataforma){
-      plataforma.placa = "Arduino UNO"
-      return this.http.get(
-        this.url+"/Plataforma/update", {params: {
-          product: JSON.stringify(plataforma)
-      },
-        observe: 'response'
-      });
-    }
+  updateInicio(plataforma){
+    plataforma.placa = "Arduino UNO"
+    return this.http.get(
+      this.url+"/Plataforma/update", {params: {
+        product: JSON.stringify(plataforma)
+    },
+      observe: 'response'
+    });
+  }
   
-    deleteInicio(idPlataforma){
-      return this.http.get(
-        this.url+"/Plataforma/delete",{params: {
-          id: idPlataforma
-        },
-          observe: 'response'
-        });
-    }
-    
-    getByIdInicio(idProv){
-      return this.http.get(
-        this.url+"/Plataforma/id", {params: {
-          idTIni: JSON.stringify(idProv)
+  deleteInicio(idPlataforma){
+    return this.http.get(
+      this.url+"/Plataforma/delete",{params: {
+        id: idPlataforma
       },
         observe: 'response'
       });
-    }
+  }
+  
+  getByIdInicio(idProv){
+    return this.http.get(
+      this.url+"/Plataforma/id", {params: {
+        idTIni: JSON.stringify(idProv)
+    },
+      observe: 'response'
+    });
+  }
 
-    //Funciones del modal
-    open(id: string) {
-      // open modal specified by id
-      let modal: any = this.url+"/Producto/add";
-      modal.open();
+  //Funciones del modal
+  open(id: string) {
+    // open modal specified by id
+    let modal: any = this.url+"/Producto/add";
+    modal.open();
   }
 
   close(id: string) {
@@ -193,4 +192,12 @@ export class ArduinoServiceService {
       modal.close();
   }
 
+  getUsuario(user){
+    return this.http.get(
+      this.url+"/User/login", {params: {
+        user: JSON.stringify(user)
+    },
+      observe: 'response'
+    })
+  }
 }

@@ -1008,8 +1008,7 @@ router.get('/Proveedor/delete', function(req, res, next) {
   });
 });
 
-
-//Consultas a labase de datos.
+//Consultas a la base de datos.
 router.get('/User/consulta', function(req, res, next){
   User.findById(1,{ attributes: ['usuario', 'contraseña'] })
   .then(user => {
@@ -1022,16 +1021,26 @@ router.get('/User/consulta', function(req, res, next){
   })
 });
 
-router.get('/User/consultas', function(req,res, next){
-  User.findAll({ where:{ usuario: "Diego", contraseña: "1234"}})
-  .then(user =>{
-    res.send(user)
-  })
-  .catch(err =>{
-    res.send(err)
-  })
-})
-
+router.get('/User/login', function(req,res, next){
+// Website you wish to allow to connect
+res.setHeader('Access-Control-Allow-Origin', '*');
+// Request methods you wish to allow
+res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+// Set to true if you need the website to include cookies in the requests sent
+// to the API (e.g. in case you use sessions)
+res.setHeader('Access-Control-Allow-Credentials', true);
+ let userData = JSON.stringify(req.query.user)
+ console.log(userData)
+ if(userData.usuario != null && userData.password != null ){
+    User.findAll({ where:{ usuario: userData.usuario , password: userData.password}})
+        .then(resp =>{
+          res.send(resp)
+        })
+        .catch(err =>{
+          res.send(err)
+        })
+  }
+ })
 
 router.get('/Producto/consulta', function(req,res, next){
   Producto.findAll({ where:{ nombreProducto: "Arduino"}})
@@ -1040,6 +1049,18 @@ router.get('/Producto/consulta', function(req,res, next){
   })
   .catch(err =>{
     res.send(err)
+  })
+})
+
+router.get('/User/logi', function(req,res,next){
+  User.findAll({})
+  .then(user => {
+    console.log(user)
+    res.send({response: user});
+  })
+  .catch(err => {
+    console.log(err)
+    res.send({error: err});
   })
 })
 

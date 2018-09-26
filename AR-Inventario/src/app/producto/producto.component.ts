@@ -1,7 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { InicioService } from '../Services/inicio.service';
-import { ArduinoComp } from '../Interfaces/arduino-comp';
-import { Producto } from '../Interfaces/producto';
 import { ArduinoServiceService } from '../Services/arduino-service.service';
 import { ProductoService } from '../Services/producto.service';
 
@@ -10,8 +7,7 @@ import { ProductoService } from '../Services/producto.service';
   templateUrl: './producto.component.html',
   styleUrls: ['./producto.component.css']
 })
-export class ProductoComponent implements OnInit {
-
+  export class ProductoComponent implements OnInit {
   
   product: any = {
     id: 0,
@@ -26,12 +22,10 @@ export class ProductoComponent implements OnInit {
     console.log(inic)
   }
 
-  
   ngOnInit() {
     this.get();
     this.getPlataforma();
   }
-
 
   plataformaList: any;
   getPlataforma(){
@@ -42,7 +36,6 @@ export class ProductoComponent implements OnInit {
   }
 
   productosList:any;
-
   get(){
     this.arduinoServ.getProducto().subscribe((result)=>{
       console.log(result);

@@ -12,9 +12,6 @@ import { ProveedorService } from './Services/proveedor.service';
 import { ProductoService } from './Services/producto.service';
 import { PlataformaService } from './Services/plataforma.service';
 import { InicioService } from './Services/inicio.service';
-import { LoginComponent } from './login/login.component';
-import { ApiService } from './Services/api.service';
-import { CustomerService } from './Services/customer.service';
 
 
 @NgModule({
@@ -23,25 +20,21 @@ import { CustomerService } from './Services/customer.service';
     PlataformaComponent,
     ProductoComponent,
     ProveedorComponent,
-    InicioComponent,
-    LoginComponent
-  
+    InicioComponent
   ],
 
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule
-    
   ],
-  providers: [ ArduinoServiceService,
+
+  providers: [ 
+    ArduinoServiceService,
     ProveedorService,
     ProductoService,
     PlataformaService,
-    InicioService,
-    ApiService,
-    CustomerService
-
+    InicioService
   ],
   
   bootstrap: [AppComponent]
