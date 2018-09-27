@@ -114,7 +114,8 @@ export class ArduinoServiceService {
   }
 
   updatePlataforma(plataforma){
-    plataforma.placa = "Raspberry"
+    plataforma.placa = "",
+    plataforma.version =""
     return this.http.get(
       this.url+"/Plataforma/update", {params: {
         plataforma: JSON.stringify(plataforma)
@@ -189,6 +190,19 @@ export class ArduinoServiceService {
   close(id: string) {
       // close modal specified by id
       let modal: any = this.url+"/Producto/add";
+      modal.close();
+  }
+
+  //Funciones actualizar modal
+  openProducto(id: string) {
+    // open modal specified by id
+    let modal: any = this.url+"/Proveedor/update";
+    modal.open();
+  }
+
+  closeProducto(id: string) {
+      // close modal specified by id
+      let modal: any = this.url+"/Proveedor/update";
       modal.close();
   }
 

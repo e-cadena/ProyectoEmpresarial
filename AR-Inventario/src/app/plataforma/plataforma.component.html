@@ -24,7 +24,9 @@
                   <td>{{plataforma.placa}}</td>
                   <td>{{plataforma.version}}</td>
                   <td><button type="button" class="btn btn-primary" (click)="deletePlataforma(plataforma.id)">Eliminar </button></td>
-                  <td><button type="button" class="btn btn-primary" (click)="updatePlataforma(plataforma)">Actualizar </button></td>
+                  <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                      Actualizar 
+                      </button></td>
             </tr>      
           </tbody>
         </table>
@@ -37,6 +39,45 @@
     Nuevo
 </button>
 
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Actualizar</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <form>
+          <div class="col">
+            <div class="form-group">
+              <label for="placa">Placa</label>
+              <input type="text" class="form-control" id="placa"  placeholder="Ingrese el nombre de la  placa" [(ngModel)]="plataforma.placa" [ngModelOptions]="{standalone: true}">
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="version">Versión</label>
+              <input type="text" class="form-control" id="version" placeholder="Ingrese la version" [(ngModel)]="plataforma.version" [ngModelOptions]="{standalone: true}">
+            </div>
+          </div>
+          
+          <br>
+        </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" (click)="addPlataforma(plataforma)">Enviar </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ventana emergente Actualizar -->
 <!-- Modal -->
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
@@ -69,8 +110,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary" (click)="addPlataforma(plataforma)">Enviar </button>
-      </div>
+        <td><button type="button" class="btn btn-primary" (click)="updatePlataforma(plataforma.id)">Eliminar </button></td>
     </div>
   </div>
 </div>

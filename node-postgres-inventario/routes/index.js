@@ -32,7 +32,7 @@ const User = sequelize.define('Usuario', {
   usuario: {
     type: Sequelize.STRING
   },
-  contraseña: {
+  password: {
     type: Sequelize.STRING
   }
 });
@@ -191,7 +191,7 @@ User.sync({force: true}).then(() => {
   // Table created
   return User.create({
     usuario: 'Esteban',
-    contraseña: 'esteban12345',
+    password: 'esteban12345',
   });
 }); 
 
@@ -526,14 +526,14 @@ router.get('/Factura/delete', function(req, res, next) {
 });
 
 //CRUD TIPO PRODUCTO
-//Producto -> todos los tipos de producto
+//tipoProducto -> todos los tipos de producto
 router.get('/tipoProducto', function(req, res, next) {
   tipoProducto.findAll().then(tipoProducto => {
       res.send(tipoProducto);
   })
 });
 
-//Producto/add -> añadir un nuevo tipo de  producto
+//tipoProducto/add -> añadir un nuevo tipo de  producto
 router.get('/tipoProducto/add', function(req, res, next) {
   tipoProducto.build({
     nombreProducto: 'Sensor',
@@ -548,7 +548,7 @@ router.get('/tipoProducto/add', function(req, res, next) {
 
 });
 
-//Producto/update -> modificar 
+//tipoProducto/update -> modificar 
 router.get('/tipoProducto/update', function(req, res, next) {
   tipoProducto.findById(1).then(tipoProducto =>{
     if(tipoProducto != null){
@@ -567,7 +567,7 @@ router.get('/tipoProducto/update', function(req, res, next) {
   });
 });
 
-//Producto/delete -> eliminar 
+//tipoProducto/delete -> eliminar 
 router.get('/tipoProducto/delete', function(req, res, next) {
   
   tipoProducto.findById(3).then(id_Producto =>{
@@ -649,32 +649,32 @@ router.get('/Inicio/add', function(req, res, next) {
   })
  });
  
- //Inicio/update -> modificar 
- router.get('/Inicio/update', function(req, res, next) {
-   // Website you wish to allow to connect
-   res.setHeader('Access-Control-Allow-Origin', '*');
-   // Request methods you wish to allow
-   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-   // Set to true if you need the website to include cookies in the requests sent
-   // to the API (e.g. in case you use sessions)
-   res.setHeader('Access-Control-Allow-Credentials', true);
-   let proveedor = JSON.parse(req.query.proveedor)
-   Inicio.findById(inicio.id).then(Inicio =>{
-    if(Inicio != null){
-     Inicio.update({ 
- 
-              })
-        .then(update =>{
-          res.send(update);
-        })
-        .catch(error => {
-          console.log(error)
-        });
-    }else{
-      res.send({error: "No encontrado para actualizar"});
-    }
-  }).catch(error => {
-    console.log(error)
+  //Inicio/update -> modificar 
+  router.get('/Inicio/update', function(req, res, next) {
+  // Website you wish to allow to connect
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  // Request methods you wish to allow
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+  // Set to true if you need the website to include cookies in the requests sent
+  // to the API (e.g. in case you use sessions)
+  res.setHeader('Access-Control-Allow-Credentials', true);
+  let Inicio = JSON.parse(req.query.proveedor)
+  Inicio.findById(inicio.id).then(Inicio =>{
+  if(Inicio != null){
+    Inicio.update({ 
+
+            })
+      .then(update =>{
+        res.send(update);
+      })
+      .catch(error => {
+        console.log(error)
+      });
+  }else{
+    res.send({error: "No encontrado para actualizar"});
+  }
+}).catch(error => {
+  console.log(error)
   });
  });
  
@@ -682,7 +682,7 @@ router.get('/Inicio/add', function(req, res, next) {
  router.get('/Inicio/delete', function(req, res, next) {
   // Website you wish to allow to connect
   res.setHeader('Access-Control-Allow-Origin', '*');
- 
+
   // Request methods you wish to allow
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
  
@@ -733,10 +733,10 @@ router.get('/Producto/add', function(req, res, next) {
    let producto = JSON.parse(req.query.product)
 
   Producto.build({
-        nombreProducto: producto.nombreProducto,
-        precioUnitario: producto.precioUnitario, 
-        tipo_id:        producto.tipo_id, 
-        plataforma_id:  producto.plataforma_id})
+        nombreProducto:    producto.nombreProducto,
+        precioUnitario:    producto.precioUnitario, 
+        plataforma_placa:  plataforma.plataforma_placa, 
+        nombreProveedor:   proveedor.nombreProveedor})
   .save(Producto)
   .then(Producto => {
     res.send(Producto);
@@ -761,10 +761,10 @@ router.get('/Producto/update', function(req, res, next) {
   Producto.findById(producto.id).then(Producto =>{
     if(Producto != null){
       Producto.update({
-        nombreProducto: producto.nombreProducto,
-        precioUnitario: producto.precioUnitario, 
-        tipo_id:        producto.tipo_id, 
-        plataforma_id:  producto.plataforma_id})
+        nombreProducto:    producto.nombreProducto,
+        precioUnitario:    producto.precioUnitario, 
+        plataforma_placa:  plataforma.plataforma_placa, 
+        nombreProveedor:   proveedor.nombreProveedor})
         .then(update =>{
           res.send(update);
         })
@@ -1032,13 +1032,13 @@ res.setHeader('Access-Control-Allow-Credentials', true);
  let userData = JSON.stringify(req.query.user)
  console.log(userData)
  if(userData.usuario != null && userData.password != null ){
-    User.findAll({ where:{ usuario: userData.usuario , password: userData.password}})
-        .then(resp =>{
-          res.send(resp)
-        })
-        .catch(err =>{
-          res.send(err)
-        })
+   User.findAll({ where:{ usuario: userData.usuario , password: userData.password}})
+         .then(resp =>{
+           res.send(resp)
+         })
+         .catch(err =>{
+           res.send(err)
+         })
   }
  })
 

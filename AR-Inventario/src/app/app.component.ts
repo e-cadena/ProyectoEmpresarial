@@ -32,7 +32,7 @@ export class AppComponent {
   }
 
   Ingresar(user){
-   //this.ingreso = true 
+   this.ingreso = false 
    this.getUsuario(user)
   }
 

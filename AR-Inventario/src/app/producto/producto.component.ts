@@ -12,8 +12,9 @@ import { ProductoService } from '../Services/producto.service';
   product: any = {
     id: 0,
     nombreProducto: '',
-    precioUnitario: 0 ,
-    plataforma_placa: 0
+    precioUnitario: 0.00 ,
+    plataforma_placa: '',
+    proveedor_nombreProveedor: ''
   };
   
   constructor(public productoServ:ProductoService, public arduinoServ:ArduinoServiceService) { }
@@ -25,9 +26,20 @@ import { ProductoService } from '../Services/producto.service';
   ngOnInit() {
     this.get();
     this.getPlataforma();
+    this.getProveedor();
   }
 
+  providerList:any;
   plataformaList: any;
+  productosList:any;
+
+   getProveedor(){
+    this.arduinoServ.getProveedor().subscribe((result)=>{
+      console.log(result);
+      this.providerList = result;
+    })
+  }
+
   getPlataforma(){
     this.arduinoServ.getPlataforma().subscribe((result)=>{
       console.log(result);
@@ -35,7 +47,7 @@ import { ProductoService } from '../Services/producto.service';
     })
   }
 
-  productosList:any;
+  
   get(){
     this.arduinoServ.getProducto().subscribe((result)=>{
       console.log(result);

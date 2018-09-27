@@ -28,8 +28,7 @@ export class ProveedorComponent implements OnInit {
   }
 
   providerList:any;
-
-
+  
     //funciones producto
    getProveedor(){
     this.arduinoServ.getProveedor().subscribe((result)=>{
