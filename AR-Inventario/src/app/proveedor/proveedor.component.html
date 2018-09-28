@@ -7,7 +7,7 @@
 
 <div class="container">
     <h2>Proveedor</h2>
-    <table class=table class="table">
+    <table class=table>
       <thead class="thead-dark">
         <tr> 
           <th>id</th> 
@@ -23,7 +23,7 @@
         </tr>
       </thead>
         <tbody>
-          <tr *ngFor="let proveedor of providerList"  >
+          <tr *ngFor="let proveedor of providerList">
                 <td>{{proveedor.id}}</td>
                 <td>{{proveedor.nombreProveedor}}</td>
                 <td>{{proveedor.direccion}}</td>
@@ -57,49 +57,48 @@
       <div class="modal-body">
         <div class="row">
           <form>
-          <div class="col">
+        <div class="col">
           <div class="form-group">
             <label for="nombreProveedor">Nombre Proveedor</label>
             <input type="text" class="form-control" id="nombreProveedor"  placeholder="Ingrese el nombre del Proveedor" [(ngModel)]="proveedor.nombreProveedor" [ngModelOptions]="{standalone: true}">
           </div>
+        </div>
+        <div class="col">
+        <div class="form-group">
+          <label for="direccion">Direccion</label>
+          <input type="text" class="form-control" id="direccion" placeholder="Ingrese la direccion" [(ngModel)]="proveedor.direccion" [ngModelOptions]="{standalone: true}">
+        </div>
+        </div>
+        <div class="col">
+        <div class="form-group">
+          <label for="telefono">Teléfono</label>
+          <input type="text" class="form-control" id="telefono" placeholder="Teléfonos" [(ngModel)]="proveedor.telefono" [ngModelOptions]="{standalone: true}">
+        </div>
+        </div>
+        <div class="col">
+          <div class="form-group">
+            <label for="horario">Horario</label>
+            <input type="text" class="form-control" id="horario" placeholder="Horario" [(ngModel)]="proveedor.horario" [ngModelOptions]="{standalone: true}">
           </div>
-          <div class="col">
+        </div>
+        <div class="col">
+          <div class="form-group">
+            <label for="contactosWeb">Contactos Web</label>
+            <input type="text" class="form-control" id="contactosWeb" placeholder="Contactos Web" [(ngModel)]="proveedor.contactosWeb" [ngModelOptions]="{standalone: true}">
+          </div>
+        </div>
+        <div class="col">
             <div class="form-group">
-              <label for="direccion">Direccion</label>
-              <input type="text" class="form-control" id="direccion" placeholder="Ingrese la direccion" [(ngModel)]="proveedor.direccion" [ngModelOptions]="{standalone: true}">
+              <label for="sucursal">Sucursal</label>
+              <input type="text" class="form-control" id="sucursal" placeholder="Sucursal" [(ngModel)]="proveedor.sucursal" [ngModelOptions]="{standalone: true}">
             </div>
-          </div>
-          <div class="col">
+        </div>
+        <div class="col">
             <div class="form-group">
-              <label for="telefono">Teléfono</label>
-              <input type="text" class="form-control" id="telefono" placeholder="Teléfonod" [(ngModel)]="proveedor.telefono" [ngModelOptions]="{standalone: true}">
+              <label for="sector">Sector</label>
+              <input type="text" class="form-control" id="sector" placeholder="Sector" [(ngModel)]="proveedor.sector" [ngModelOptions]="{standalone: true}">
             </div>
-          </div>
-          <div class="col">
-              <div class="form-group">
-                <label for="horario">Horario</label>
-                <input type="text" class="form-control" id="horario" placeholder="Horario" [(ngModel)]="proveedor.horario" [ngModelOptions]="{standalone: true}">
-              </div>
-            </div>
-          <div class="col">
-              <div class="form-group">
-                <label for="contactosWeb">Contactos Web</label>
-                <input type="text" class="form-control" id="contactosWeb" placeholder="Contactos Web" [(ngModel)]="proveedor.contactosWeb" [ngModelOptions]="{standalone: true}">
-              </div>
-            </div>
-            <div class="col">
-                <div class="form-group">
-                  <label for="sucursal">Sucursal</label>
-                  <input type="text" class="form-control" id="sucursal" placeholder="Sucursal" [(ngModel)]="proveedor.sucursal" [ngModelOptions]="{standalone: true}">
-                </div>
-              </div>
-              <div class="col">
-                  <div class="form-group">
-                    <label for="sector">Sector</label>
-                    <input type="text" class="form-control" id="sector" placeholder="Sector" [(ngModel)]="proveedor.sector" [ngModelOptions]="{standalone: true}">
-                  </div>
-                </div>
-              
+        </div>
         </form>
         </div>
       </div>

@@ -30,7 +30,7 @@ export class ArduinoServiceService {
   }
 
   update(product){
-    product.nombreProducto = "Arduino"
+    product.nombreProducto = "Raspberry"
     return this.http.get(
       this.url+"/Producto/update", {params: {
         product: JSON.stringify(product)
@@ -142,44 +142,6 @@ export class ArduinoServiceService {
     });
   }
   
-  //Inicio
-  addInicio(inicio){
-    return this.http.get(
-      this.url+"/Plataforma/add", {params: {
-        inicio: JSON.stringify(inicio)
-    },
-      observe: 'response'
-    });
-  }
-  
-  updateInicio(plataforma){
-    plataforma.placa = "Arduino UNO"
-    return this.http.get(
-      this.url+"/Plataforma/update", {params: {
-        product: JSON.stringify(plataforma)
-    },
-      observe: 'response'
-    });
-  }
-  
-  deleteInicio(idPlataforma){
-    return this.http.get(
-      this.url+"/Plataforma/delete",{params: {
-        id: idPlataforma
-      },
-        observe: 'response'
-      });
-  }
-  
-  getByIdInicio(idProv){
-    return this.http.get(
-      this.url+"/Plataforma/id", {params: {
-        idTIni: JSON.stringify(idProv)
-    },
-      observe: 'response'
-    });
-  }
-
   //Funciones del modal
   open(id: string) {
     // open modal specified by id
@@ -214,4 +176,5 @@ export class ArduinoServiceService {
       observe: 'response'
     })
   }
+
 }

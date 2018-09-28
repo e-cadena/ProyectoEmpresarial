@@ -164,7 +164,7 @@ User.sync({force: true}).then(() => {
   // Table created
   return User.create({
     usuario: 'John',
-    contraseña: 'john1234',
+    password: 'john1234',
   });
 });
 

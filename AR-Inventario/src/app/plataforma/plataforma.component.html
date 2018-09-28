@@ -1,6 +1,6 @@
 <div class="row">
     <h1 class="text-center">
-      {{ title }}
+      {{title}}
     </h1>
   </div>
   
@@ -8,7 +8,7 @@
   
   <div class="container">
       <h2>Plataforma</h2>
-      <table class=table class="table">
+      <table class=table>
         <thead class="thead-dark">
           <tr> 
             <th>id</th> 
@@ -24,21 +24,15 @@
                   <td>{{plataforma.placa}}</td>
                   <td>{{plataforma.version}}</td>
                   <td><button type="button" class="btn btn-primary" (click)="deletePlataforma(plataforma.id)">Eliminar </button></td>
-                  <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-                      Actualizar 
-                      </button></td>
+                  <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">Actualizar</button></td>
             </tr>      
           </tbody>
         </table>
 
 
 <!-- ventana emergente -->
-  
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-    Nuevo
-</button>
-
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">Nuevo</button>
 <!-- Modal -->
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
@@ -64,8 +58,6 @@
               <input type="text" class="form-control" id="version" placeholder="Ingrese la version" [(ngModel)]="plataforma.version" [ngModelOptions]="{standalone: true}">
             </div>
           </div>
-          
-          <br>
         </form>
         </div>
       </div>

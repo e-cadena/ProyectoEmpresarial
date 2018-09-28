@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { ArduinoServiceService } from './Services/arduino-service.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpHeaderResponse } from '@angular/common/http';
 import { PlataformaComponent } from './plataforma/plataforma.component';
 import { ProductoComponent } from './producto/producto.component';
 import { ProveedorComponent } from './proveedor/proveedor.component';

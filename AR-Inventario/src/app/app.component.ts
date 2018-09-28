@@ -24,7 +24,6 @@ export class AppComponent {
   loginList:any;
 
   ngOnInit(){ 
-
   }
 
   changeTab(num:any){
@@ -32,7 +31,7 @@ export class AppComponent {
   }
 
   Ingresar(user){
-   this.ingreso = false 
+   //this.ingreso = false 
    this.getUsuario(user)
   }
 
@@ -41,9 +40,9 @@ export class AppComponent {
   }
 
   getUsuario(user){
-    this.arduinoServ.getUsuario(user).subscribe((user)=>{
-      console.log("Ustes es:" +user);
-      this.loginList = user
+    this.arduinoServ.getUsuario(user).subscribe((resp)=>{
+      console.log("Ustes es:" +JSON.stringify(resp));
+      this.loginList = resp;
     })
   }
 }

@@ -280,7 +280,7 @@ router.get('/Usuario', function(req, res, next) {
 router.get('/Usuario/add', function(req, res, next) {
   User.build({
     usuario: 'Diego',
-    contraseña: '1234'
+    password: '1234'
   }).save()
   .then(user => {
     res.send(user);
@@ -295,7 +295,7 @@ router.get('/Usuario/add', function(req, res, next) {
 router.get('/Usuario/update', function(req, res, next) {
   User.findById(7).then(userId =>{
     if(userId != null){
-      userId.update({usuario:"Lucho",contraseña: userId.contraseña})
+      userId.update({usuario:"Lucho",password: userId.password})
         .then(update =>{
           res.send(update);
         })
@@ -1009,18 +1009,6 @@ router.get('/Proveedor/delete', function(req, res, next) {
 });
 
 //Consultas a la base de datos.
-router.get('/User/consulta', function(req, res, next){
-  User.findById(1,{ attributes: ['usuario', 'contraseña'] })
-  .then(user => {
-    console.log(user.dataValues)
-    res.send({response: user.dataValues});
-  })
-  .catch(err => {
-    console.log(err)
-    res.send({error: err});
-  })
-});
-
 router.get('/User/login', function(req,res, next){
 // Website you wish to allow to connect
 res.setHeader('Access-Control-Allow-Origin', '*');
@@ -1029,20 +1017,69 @@ res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, D
 // Set to true if you need the website to include cookies in the requests sent
 // to the API (e.g. in case you use sessions)
 res.setHeader('Access-Control-Allow-Credentials', true);
- let userData = JSON.stringify(req.query.user)
- console.log(userData)
- if(userData.usuario != null && userData.password != null ){
+ let userData = JSON.parse(req.query.user)
+ //console.log(userData)
    User.findAll({ where:{ usuario: userData.usuario , password: userData.password}})
-         .then(resp =>{
-           res.send(resp)
-         })
-         .catch(err =>{
-           res.send(err)
-         })
-  }
+      .then(resp =>{
+        let userResponse = JSON.stringify(resp[0])
+        console.log(userResponse)
+        if(userResponse){
+          res.send({response: "ok"})
+        }else{
+          res.send({response: "nook"})
+        }
+        
+      })
+      .catch(error =>{
+        res.send(error)
+      }
+  ) 
  })
 
+ router.get('/User/consulta', function(req, res, next){
+  // Website you wish to allow to connect
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  // Request methods you wish to allow
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+  // Set to true if you need the website to include cookies in the requests sent
+  // to the API (e.g. in case you use sessions)
+  res.setHeader('Access-Control-Allow-Credentials', true);
+    User.findById(1,{ attributes: ['usuario', 'password'] })
+    .then(user => {
+      console.log(user.dataValues)
+      res.send({response: user.dataValues});
+    })
+    .catch(err => {
+      console.log(err)
+      res.send({error: err});
+    })
+  });
+
+router.get('/User/log', function(req,res,next){
+// Website you wish to allow to connect
+res.setHeader('Access-Control-Allow-Origin', '*');
+// Request methods you wish to allow
+res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+// Set to true if you need the website to include cookies in the requests sent
+// to the API (e.g. in case you use sessions)
+res.setHeader('Access-Control-Allow-Credentials', true);
+  User.findAll({ attributes: ['usuario', 'password']})
+  .then(resp =>{
+    res.send(resp)
+  })
+  .catch(err =>{
+    res.send(err)
+  })
+})
+
 router.get('/Producto/consulta', function(req,res, next){
+// Website you wish to allow to connect
+res.setHeader('Access-Control-Allow-Origin', '*');
+// Request methods you wish to allow
+res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+// Set to true if you need the website to include cookies in the requests sent
+// to the API (e.g. in case you use sessions)
+res.setHeader('Access-Control-Allow-Credentials', true);
   Producto.findAll({ where:{ nombreProducto: "Arduino"}})
   .then(product =>{
     res.send(product)
@@ -1053,6 +1090,13 @@ router.get('/Producto/consulta', function(req,res, next){
 })
 
 router.get('/User/logi', function(req,res,next){
+// Website you wish to allow to connect
+res.setHeader('Access-Control-Allow-Origin', '*');
+// Request methods you wish to allow
+res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+// Set to true if you need the website to include cookies in the requests sent
+// to the API (e.g. in case you use sessions)
+res.setHeader('Access-Control-Allow-Credentials', true);
   User.findAll({})
   .then(user => {
     console.log(user)
