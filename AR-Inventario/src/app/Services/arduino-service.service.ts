@@ -159,13 +159,13 @@ export class ArduinoServiceService {
   openProducto(id: string) {
     // open modal specified by id
     let modal: any = this.url+"/Proveedor/update";
-    modal.open();
+    modal.openProducto();
   }
 
   closeProducto(id: string) {
       // close modal specified by id
       let modal: any = this.url+"/Proveedor/update";
-      modal.close();
+      modal.closeProducto();
   }
 
   getUsuario(user){

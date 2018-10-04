@@ -279,7 +279,7 @@ router.get('/Usuario', function(req, res, next) {
 //Usuarios/add -> añadir un nuevo usuario
 router.get('/Usuario/add', function(req, res, next) {
   User.build({
-    usuario: 'Diego',
+    usuario: 'Henry',
     password: '1234'
   }).save()
   .then(user => {
@@ -1008,6 +1008,10 @@ router.get('/Proveedor/delete', function(req, res, next) {
   });
 });
 
+
+
+
+
 //Consultas a la base de datos.
 router.get('/User/login', function(req,res, next){
 // Website you wish to allow to connect
@@ -1018,21 +1022,20 @@ res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, D
 // to the API (e.g. in case you use sessions)
 res.setHeader('Access-Control-Allow-Credentials', true);
  let userData = JSON.parse(req.query.user)
- //console.log(userData)
+ console.log(userData)
    User.findAll({ where:{ usuario: userData.usuario , password: userData.password}})
-      .then(resp =>{
-        let userResponse = JSON.stringify(resp[0])
+    .then(resp => {
+      let userResponse = JSON.stringify(resp)
         console.log(userResponse)
-        if(userResponse){
-          res.send({response: "ok"})
-        }else{
-          res.send({response: "nook"})
-        }
-        
-      })
-      .catch(error =>{
-        res.send(error)
-      }
+      if(userResponse){
+        res.send({resp})
+      }else{
+        res.send({response: "no ok"})
+       }
+     })
+    .catch(error =>{
+      res.send(error)
+    }
   ) 
  })
 
@@ -1064,7 +1067,7 @@ res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, D
 // to the API (e.g. in case you use sessions)
 res.setHeader('Access-Control-Allow-Credentials', true);
   User.findAll({ attributes: ['usuario', 'password']})
-  .then(resp =>{
+  .then(resp => {
     res.send(resp)
   })
   .catch(err =>{
@@ -1081,7 +1084,7 @@ res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, D
 // to the API (e.g. in case you use sessions)
 res.setHeader('Access-Control-Allow-Credentials', true);
   Producto.findAll({ where:{ nombreProducto: "Arduino"}})
-  .then(product =>{
+  .then(product => {
     res.send(product)
   })
   .catch(err =>{
