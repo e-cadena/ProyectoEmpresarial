@@ -293,7 +293,7 @@ router.get('/Usuario/add', function(req, res, next) {
 
 //Usuarios/update -> modificar unicamente el nombre
 router.get('/Usuario/update', function(req, res, next) {
-  User.findById(7).then(userId =>{
+  User.findById(2).then(userId =>{
     if(userId != null){
       userId.update({usuario:"Lucho",password: userId.password})
         .then(update =>{
@@ -735,8 +735,8 @@ router.get('/Producto/add', function(req, res, next) {
   Producto.build({
         nombreProducto:    producto.nombreProducto,
         precioUnitario:    producto.precioUnitario, 
-        plataforma_placa:  plataforma.plataforma_placa, 
-        nombreProveedor:   proveedor.nombreProveedor})
+        plataforma_placa:  producto.plataforma_placa, 
+        nombreProveedor:   producto.nombreProveedor})
   .save(Producto)
   .then(Producto => {
     res.send(Producto);
@@ -763,8 +763,8 @@ router.get('/Producto/update', function(req, res, next) {
       Producto.update({
         nombreProducto:    producto.nombreProducto,
         precioUnitario:    producto.precioUnitario, 
-        plataforma_placa:  plataforma.plataforma_placa, 
-        nombreProveedor:   proveedor.nombreProveedor})
+        plataforma_placa:  producto.plataforma_placa, 
+        nombreProveedor:   producto.nombreProveedor})
         .then(update =>{
           res.send(update);
         })
@@ -1008,10 +1008,6 @@ router.get('/Proveedor/delete', function(req, res, next) {
   });
 });
 
-
-
-
-
 //Consultas a la base de datos.
 router.get('/User/login', function(req,res, next){
 // Website you wish to allow to connect
@@ -1023,31 +1019,31 @@ res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, D
 res.setHeader('Access-Control-Allow-Credentials', true);
  let userData = JSON.parse(req.query.user)
  console.log(userData)
-   User.findAll({ where:{ usuario: userData.usuario , password: userData.password}})
+  User.findAll({ where:{ usuario: userData.usuario , password: userData.password}})
     .then(resp => {
       let userResponse = JSON.stringify(resp)
         console.log(userResponse)
       if(userResponse){
         res.send({resp})
+        console.log(resp)
       }else{
-        res.send({response: "no ok"})
+        res.send({resp: "no ok"})
        }
      })
     .catch(error =>{
       res.send(error)
-    }
-  ) 
+    }) 
  })
 
- router.get('/User/consulta', function(req, res, next){
-  // Website you wish to allow to connect
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  // Request methods you wish to allow
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-  // Set to true if you need the website to include cookies in the requests sent
-  // to the API (e.g. in case you use sessions)
-  res.setHeader('Access-Control-Allow-Credentials', true);
-    User.findById(1,{ attributes: ['usuario', 'password'] })
+router.get('/User/consulta', function(req, res, next){
+// Website you wish to allow to connect
+res.setHeader('Access-Control-Allow-Origin', '*');
+// Request methods you wish to allow
+res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+// Set to true if you need the website to include cookies in the requests sent
+// to the API (e.g. in case you use sessions)
+res.setHeader('Access-Control-Allow-Credentials', true);
+  User.findById(1,{ attributes: ['usuario', 'password'] })
     .then(user => {
       console.log(user.dataValues)
       res.send({response: user.dataValues});
@@ -1084,11 +1080,11 @@ res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, D
 // to the API (e.g. in case you use sessions)
 res.setHeader('Access-Control-Allow-Credentials', true);
   Producto.findAll({ where:{ nombreProducto: "Arduino"}})
-  .then(product => {
-    res.send(product)
-  })
-  .catch(err =>{
-    res.send(err)
+   .then(product => {
+     res.send(product)
+   })
+   .catch(err =>{
+     res.send(err)
   })
 })
 
@@ -1102,12 +1098,26 @@ res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, D
 res.setHeader('Access-Control-Allow-Credentials', true);
   User.findAll({})
   .then(user => {
-    console.log(user)
     res.send({response: user});
   })
   .catch(err => {
-    console.log(err)
     res.send({error: err});
+  })
+})
+
+//Funciones buscador
+router.get('/Producto/busqueda', function(req,res,next){
+// Website you wish to allow to connect
+res.setHeader('Access-Control-Allow-Origin', '*');
+// Request methods you wish to allow
+res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+// Set to true if you need the website to include cookies in the requests sent
+// to the API (e.g. in case you use sessions)
+res.setHeader('Access-Control-Allow-Credentials', true);
+  sequelize.query('SELECT * FROM Productos WHERE nombreProducto LIKE :search_name ',{
+    replacements: {search_name: 'Raspberry%'}, type: sequelize.QueryTypes.SELECT})
+    .then(resp => {
+      res.send(resp)
   })
 })
 

@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders }from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
+
 export class ArduinoServiceService {
 
   url:string = "http://192.168.7.85:3000"
@@ -22,36 +23,36 @@ export class ArduinoServiceService {
   
   add(product){
     return this.http.get(
-      this.url+"/Producto/add", {params: {
-        product: JSON.stringify(product)
+    this.url+"/Producto/add", {params: {
+      product: JSON.stringify(product)
     },
       observe: 'response'
     });
   }
-
+  
   update(product){
     product.nombreProducto = "Raspberry"
     return this.http.get(
-      this.url+"/Producto/update", {params: {
-        product: JSON.stringify(product)
+    this.url+"/Producto/update", {params: {
+      product: JSON.stringify(product)
     },
       observe: 'response'
     });
   }
-
+  
   delete(idProduct){
     return this.http.get(
-      this.url+"/Producto/delete",{params: {
-        id: idProduct
-      },
-        observe: 'response'
-      });
+    this.url+"/Producto/delete",{params: {
+      id: idProduct
+    },
+      observe: 'response'
+    });
   }
   
   getById(idTipo){
     return this.http.get(
-      this.url+"/tipoProducto/id", {params: {
-        idTProduct: JSON.stringify(idTipo)
+    this.url+"/tipoProducto/id", {params: {
+      idTProduct: JSON.stringify(idTipo)
     },
       observe: 'response'
     });
@@ -64,8 +65,8 @@ export class ArduinoServiceService {
   
   addProveedor(proveedor){
     return this.http.get(
-      this.url+"/Proveedor/add", {params: {
-        proveedor: JSON.stringify(proveedor)
+    this.url+"/Proveedor/add", {params: {
+      proveedor: JSON.stringify(proveedor)
     },
       observe: 'response'
     });
@@ -74,8 +75,8 @@ export class ArduinoServiceService {
   updateProveedor(proveedor){
     proveedor.nombreProveedor = "Electronica123"
     return this.http.get(
-      this.url+"/Proveedor/update", {params: {
-        proveedor: JSON.stringify(proveedor)
+    this.url+"/Proveedor/update", {params: {
+      proveedor: JSON.stringify(proveedor)
     },
       observe: 'response'
     });
@@ -83,17 +84,17 @@ export class ArduinoServiceService {
 
   deleteProveedor(idProveedor){
     return this.http.get(
-      this.url+"/Proveedor/delete",{params: {
-        id: idProveedor
-      },
-        observe: 'response'
-      });
+    this.url+"/Proveedor/delete",{params: {
+      id: idProveedor
+    },
+      observe: 'response'
+    });
   }
   
   getByIdProveedor(idProv){
     return this.http.get(
-      this.url+"/Plataforma/id", {params: {
-        idTProv: JSON.stringify(idProv)
+    this.url+"/Plataforma/id", {params: {
+      idTProv: JSON.stringify(idProv)
     },
       observe: 'response'
     });
@@ -106,8 +107,8 @@ export class ArduinoServiceService {
 
   addPlataforma(plataforma){
     return this.http.get(
-      this.url+"/Plataforma/add", {params: {
-        plataforma: JSON.stringify(plataforma)
+    this.url+"/Plataforma/add", {params: {
+      plataforma: JSON.stringify(plataforma)
     },
       observe: 'response'
     });
@@ -117,8 +118,8 @@ export class ArduinoServiceService {
     plataforma.placa = "",
     plataforma.version =""
     return this.http.get(
-      this.url+"/Plataforma/update", {params: {
-        plataforma: JSON.stringify(plataforma)
+    this.url+"/Plataforma/update", {params: {
+      plataforma: JSON.stringify(plataforma)
     },
       observe: 'response'
     });
@@ -126,17 +127,17 @@ export class ArduinoServiceService {
 
   deletePlataforma(idPlataforma){
     return this.http.get(
-      this.url+"/Plataforma/delete",{params: {
-        id: idPlataforma
-      },
-        observe: 'response'
-      });
+    this.url+"/Plataforma/delete",{params: {
+      id: idPlataforma
+    },
+      observe: 'response'
+    });
   }
   
   getByIdPlataforma(idProv){
     return this.http.get(
-      this.url+"/Plataforma/id", {params: {
-        idTPlat: JSON.stringify(idProv)
+    this.url+"/Plataforma/id", {params: {
+      idTPlat: JSON.stringify(idProv)
     },
       observe: 'response'
     });
@@ -150,9 +151,9 @@ export class ArduinoServiceService {
   }
 
   close(id: string) {
-      // close modal specified by id
-      let modal: any = this.url+"/Producto/add";
-      modal.close();
+    // close modal specified by id
+    let modal: any = this.url+"/Producto/add";
+    modal.close();
   }
 
   //Funciones actualizar modal
@@ -163,18 +164,26 @@ export class ArduinoServiceService {
   }
 
   closeProducto(id: string) {
-      // close modal specified by id
-      let modal: any = this.url+"/Proveedor/update";
-      modal.closeProducto();
+    // close modal specified by id
+    let modal: any = this.url+"/Proveedor/update";
+    modal.closeProducto();
   }
 
   getUsuario(user){
     return this.http.get(
-      this.url+"/User/login", {params: {
-        user: JSON.stringify(user)
+    this.url+"/User/login", {params: {
+      user: JSON.stringify(user)
     },
       observe: 'response'
     })
   }
 
+  getProductoB(product){
+    return this.http.get(
+    this.url+"/Producto/busqueda", {params: {
+      product: JSON.stringify(product)
+    },
+      observe: 'response'
+    })
+  }
 }

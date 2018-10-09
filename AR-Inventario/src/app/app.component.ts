@@ -19,19 +19,19 @@ export class AppComponent {
 
   title = 'AR-Inventario';
   inTab:number = 0;
-  ingreso:boolean =true;
+  ingreso:boolean = true;
   loginList:any;
 
   ngOnInit(){ 
   }
 
-  changeTab(num:any){
+  changeTab(num : any){
     this.inTab = num;
   }
 
   Ingresar(user){
    this.getUsuario(user)
-   //this.ingreso = false
+   this.ingreso = false
   }
 
   Cerrar(){

@@ -7,6 +7,7 @@ import { ProductoService } from '../Services/producto.service';
   templateUrl: './producto.component.html',
   styleUrls: ['./producto.component.css']
 })
+
   export class ProductoComponent implements OnInit {
   
   product: any = {
@@ -15,7 +16,7 @@ import { ProductoService } from '../Services/producto.service';
     precioUnitario: 0.00 ,
     plataforma_placa: '',
     proveedor_nombreProveedor: ''
-  };
+  }
   
   constructor(public productoServ:ProductoService, public arduinoServ:ArduinoServiceService) { }
   
@@ -30,10 +31,10 @@ import { ProductoService } from '../Services/producto.service';
   }
 
   providerList:any;
-  plataformaList: any;
+  plataformaList:any;
   productosList:any;
 
-   getProveedor(){
+  getProveedor(){
     this.arduinoServ.getProveedor().subscribe((result)=>{
       console.log(result);
       this.providerList = result;
@@ -47,21 +48,19 @@ import { ProductoService } from '../Services/producto.service';
     })
   }
 
-  
   get(){
     this.arduinoServ.getProducto().subscribe((result)=>{
       console.log(result);
       this.productosList = result;
-      
     })
   }
 
   add(product){
     console.log(product)
-     this.arduinoServ.add(product).subscribe((result) =>{
+    this.arduinoServ.add(product).subscribe((result) =>{
       console.log("Creado:" + result);
-    this.get();
-     })
+      this.get();
+    })
   }
 
   update(product){
@@ -79,17 +78,8 @@ import { ProductoService } from '../Services/producto.service';
     })
   } 
 
-  getTipo(id){
-    let idtipo: any = ""
-    this.arduinoServ.getById(id).subscribe((tipoResult:any)=>{
-      console.log(tipoResult.body.nombreProducto);
-      idtipo = tipoResult.body.nombreProducto;
-      return idtipo 
-    });
-    return idtipo
-  }
-
   onSelectProducto(event){
     console.log(event)
   }
+
 }

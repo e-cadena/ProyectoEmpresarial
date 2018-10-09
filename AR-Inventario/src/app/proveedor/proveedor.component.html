@@ -5,7 +5,7 @@
   </div>
 <div class="container">
     <h2>Proveedor</h2>
-    <table class=table>
+    <table class="table table-striped">
       <thead class="thead-dark">
         <tr> 
           <th>id</th> 
@@ -20,28 +20,25 @@
           <th>Actualizar</th>
         </tr>
       </thead>
-        <tbody>
-          <tr *ngFor="let proveedor of providerList">
-                <td>{{proveedor.id}}</td>
-                <td>{{proveedor.nombreProveedor}}</td>
-                <td>{{proveedor.direccion}}</td>
-                <td>{{proveedor.telefono}}</td>
-                <td>{{proveedor.horario}}</td>
-                <td>{{proveedor.contactosWeb}}</td>
-                <td>{{proveedor.sucursal}}</td>
-                <td>{{proveedor.sector}}</td>
-                <td><button type="button" class="btn btn-primary" (click)="deleteProveedor(proveedor.id)">Eliminar </button></td>
-                <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">Actualizar</button></td>
-          </tr>      
-        </tbody>
-      </table>
+      <tbody>
+        <tr *ngFor="let proveedor of providerList">
+          <td>{{proveedor.id}}</td>
+          <td>{{proveedor.nombreProveedor}}</td>
+          <td>{{proveedor.direccion}}</td>
+          <td>{{proveedor.telefono}}</td>
+          <td>{{proveedor.horario}}</td>
+          <td>{{proveedor.contactosWeb}}</td>
+          <td>{{proveedor.sucursal}}</td>
+          <td>{{proveedor.sector}}</td>
+          <td><button type="button" class="btn btn-primary" (click)="deleteProveedor(proveedor.id)">Eliminar </button></td>
+          <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">Actualizar</button></td>
+        </tr>      
+      </tbody>
+    </table>
 
 <!-- ventana emergente --> 
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-  Nuevo
-</button>
-
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">Nuevo</button>
 <!-- Modal -->
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
@@ -109,69 +106,69 @@
 </div>
 
 <!--modal Actualizar -->
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalCenterTitle">Nuevo Ingreso</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="row">
-            <form>
-            <div class="col">
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Nuevo Ingreso</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <form>
+          <div class="col">
+          <div class="form-group">
+            <label for="nombreProveedor">Nombre Proveedor</label>
+            <input type="text" class="form-control" id="nombreProveedor"  placeholder="Ingrese el nombre del Proveedor" [(ngModel)]="proveedor.nombreProveedor" [ngModelOptions]="{standalone: true}">
+          </div>
+          </div>
+          <div class="col">
             <div class="form-group">
-              <label for="nombreProveedor">Nombre Proveedor</label>
-              <input type="text" class="form-control" id="nombreProveedor"  placeholder="Ingrese el nombre del Proveedor" [(ngModel)]="proveedor.nombreProveedor" [ngModelOptions]="{standalone: true}">
+              <label for="direccion">Direccion</label>
+              <input type="text" class="form-control" id="direccion" placeholder="Ingrese la direccion" [(ngModel)]="proveedor.direccion" [ngModelOptions]="{standalone: true}">
             </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="telefono">Teléfono</label>
+              <input type="text" class="form-control" id="telefono" placeholder="Teléfonod" [(ngModel)]="proveedor.telefono" [ngModelOptions]="{standalone: true}">
             </div>
-            <div class="col">
+          </div>
+          <div class="col">
               <div class="form-group">
-                <label for="direccion">Direccion</label>
-                <input type="text" class="form-control" id="direccion" placeholder="Ingrese la direccion" [(ngModel)]="proveedor.direccion" [ngModelOptions]="{standalone: true}">
+                <label for="horario">Horario</label>
+                <input type="text" class="form-control" id="horario" placeholder="Horario" [(ngModel)]="proveedor.horario" [ngModelOptions]="{standalone: true}">
               </div>
             </div>
-            <div class="col">
+          <div class="col">
               <div class="form-group">
-                <label for="telefono">Teléfono</label>
-                <input type="text" class="form-control" id="telefono" placeholder="Teléfonod" [(ngModel)]="proveedor.telefono" [ngModelOptions]="{standalone: true}">
+                <label for="contactosWeb">Contactos Web</label>
+                <input type="text" class="form-control" id="contactosWeb" placeholder="Contactos Web" [(ngModel)]="proveedor.contactosWeb" [ngModelOptions]="{standalone: true}">
               </div>
             </div>
             <div class="col">
                 <div class="form-group">
-                  <label for="horario">Horario</label>
-                  <input type="text" class="form-control" id="horario" placeholder="Horario" [(ngModel)]="proveedor.horario" [ngModelOptions]="{standalone: true}">
-                </div>
-              </div>
-            <div class="col">
-                <div class="form-group">
-                  <label for="contactosWeb">Contactos Web</label>
-                  <input type="text" class="form-control" id="contactosWeb" placeholder="Contactos Web" [(ngModel)]="proveedor.contactosWeb" [ngModelOptions]="{standalone: true}">
+                  <label for="sucursal">Sucursal</label>
+                  <input type="text" class="form-control" id="sucursal" placeholder="Sucursal" [(ngModel)]="proveedor.sucursal" [ngModelOptions]="{standalone: true}">
                 </div>
               </div>
               <div class="col">
                   <div class="form-group">
-                    <label for="sucursal">Sucursal</label>
-                    <input type="text" class="form-control" id="sucursal" placeholder="Sucursal" [(ngModel)]="proveedor.sucursal" [ngModelOptions]="{standalone: true}">
+                    <label for="sector">Sector</label>
+                    <input type="text" class="form-control" id="sector" placeholder="Sector" [(ngModel)]="proveedor.sector" [ngModelOptions]="{standalone: true}">
                   </div>
                 </div>
-                <div class="col">
-                    <div class="form-group">
-                      <label for="sector">Sector</label>
-                      <input type="text" class="form-control" id="sector" placeholder="Sector" [(ngModel)]="proveedor.sector" [ngModelOptions]="{standalone: true}">
-                    </div>
-                  </div>
-                
-          </form>
-          </div>
+              
+        </form>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-          <button type="button" class="btn btn-primary" (click)="updateProveedor(proveedor)">Enviar </button>
-        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" (click)="updateProveedor(proveedor)">Enviar </button>
       </div>
     </div>
   </div>
+</div>
