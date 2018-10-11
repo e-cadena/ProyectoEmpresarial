@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const sequelize = new Sequelize('Inventario', 'postgres', '1234', {
+const Sequelize = new Sequelize('Inventario', 'postgres', '1234', {
   host: '192.168.7.133',
   dialect: 'postgres',
   operatorsAliases: false,

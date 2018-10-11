@@ -30,52 +30,35 @@ export class InicioComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.getProveedor();
+    this.getPlataforma();
+    this.get();
    }
   
   productosList:any;
+  providerList:any;
+  plataformaList:any;
 
-  enviar(comp: ArduinoComp) {
-    console.log(comp);
-  }
-
-  //funciones del buscador y filtrado.
-  getB(){
-    this.arduinoServ.getValue(ProductoService).subscribe((result) =>{
+  getProveedor(){
+    this.arduinoServ.getProveedor().subscribe((result)=>{
       console.log(result);
-      this.productosList =result
+      this.providerList = result;
     })
   }
-  
-  //funciones producto
+
+  getPlataforma(){
+    this.arduinoServ.getPlataforma().subscribe((result)=>{
+      console.log(result);
+      this.plataformaList = result;
+    })
+  }
+
   get(){
     this.arduinoServ.getProducto().subscribe((result)=>{
       console.log(result);
       this.productosList = result;
     })
   }
-
-  add(product){
-    this.arduinoServ.add(product).subscribe((result) =>{
-      console.log("Creado:" + result);
-      this.get();
-    })
-  }
-
-  update(product){
-    this.arduinoServ.update(product).subscribe((result) =>{
-      console.log("Actualizado:" + result);
-      this.get();
-    })
-  }
-
-  delete(id){
-    console.log(id);
-    this.arduinoServ.delete(id).subscribe((id)=>{
-        console.log("Eliminado: "+ id);
-        this.get();
-    })
-  } 
 
   getInic(id){
     let idInic: any = ""

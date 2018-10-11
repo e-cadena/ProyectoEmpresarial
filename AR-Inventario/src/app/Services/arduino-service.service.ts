@@ -156,7 +156,7 @@ export class ArduinoServiceService {
     modal.close();
   }
 
-  //Funciones actualizar modal
+  ///Funciones actualizar modal
   openProducto(id: string) {
     // open modal specified by id
     let modal: any = this.url+"/Proveedor/update";
@@ -171,19 +171,11 @@ export class ArduinoServiceService {
 
   getUsuario(user){
     return this.http.get(
-    this.url+"/User/login", {params: {
-      user: JSON.stringify(user)
+      this.url+"/User/login", {params: {
+        user: JSON.stringify(user)
     },
       observe: 'response'
     })
   }
 
-  getProductoB(product){
-    return this.http.get(
-    this.url+"/Producto/busqueda", {params: {
-      product: JSON.stringify(product)
-    },
-      observe: 'response'
-    })
-  }
 }

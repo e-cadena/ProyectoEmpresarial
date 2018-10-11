@@ -1,7 +1,7 @@
 import { ArduinoComp } from './Interfaces/arduino-comp';
 import { Component } from '@angular/core';
 import { ArduinoServiceService } from './Services/arduino-service.service';
-import { Producto } from './Interfaces/producto';
+import { isGeneratedFile } from '@angular/compiler/src/aot/util';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +10,7 @@ import { Producto } from './Interfaces/producto';
 })
 export class AppComponent {
 
-  user: any = {
+  user:any = {
     usuario: "",
     password: ""
   }
@@ -31,17 +31,20 @@ export class AppComponent {
 
   Ingresar(user){
    this.getUsuario(user)
-   this.ingreso = false
+   //this.ingreso = false
   }
 
   Cerrar(){
-    this.ingreso = true
+   this.ingreso = true
   }
 
   getUsuario(user){
     this.arduinoServ.getUsuario(user).subscribe((resp)=>{
-      console.log("Ustes es:" +JSON.stringify(resp));
-      this.loginList = resp;
+      let respuesta: any = resp.body
+      console.log(respuesta.response)
+      if(respuesta.response == "true"){
+        this.ingreso = false
+      }
     })
   }
 }

@@ -1010,30 +1010,30 @@ router.get('/Proveedor/delete', function(req, res, next) {
 
 //Consultas a la base de datos.
 router.get('/User/login', function(req,res, next){
-// Website you wish to allow to connect
-res.setHeader('Access-Control-Allow-Origin', '*');
-// Request methods you wish to allow
-res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-// Set to true if you need the website to include cookies in the requests sent
-// to the API (e.g. in case you use sessions)
-res.setHeader('Access-Control-Allow-Credentials', true);
- let userData = JSON.parse(req.query.user)
- console.log(userData)
-  User.findAll({ where:{ usuario: userData.usuario , password: userData.password}})
-    .then(resp => {
-      let userResponse = JSON.stringify(resp)
-        console.log(userResponse)
-      if(userResponse){
-        res.send({resp})
-        console.log(resp)
-      }else{
-        res.send({resp: "no ok"})
-       }
-     })
-    .catch(error =>{
-      res.send(error)
-    }) 
- })
+ // Website you wish to allow to connect
+ res.setHeader('Access-Control-Allow-Origin', '*');
+ // Request methods you wish to allow
+ res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+ // Set to true if you need the website to include cookies in the requests sent
+ // to the API (e.g. in case you use sessions)
+ res.setHeader('Access-Control-Allow-Credentials', true);
+let userData = JSON.parse(req.query.user)
+console.log(userData) 
+User.findAll({where: {usuario: userData.usuario , password: userData.password}})
+  .then(resp => {
+  let userResponse = JSON.stringify(resp)
+    console.log(userResponse)
+  if(userResponse !=null){
+    res.send({response: "true"})
+    console.log(resp)
+  }else{
+    res.send({response: "false"})
+   }
+  })
+  .catch(error =>{
+    res.send(error)
+  }) 
+})
 
 router.get('/User/consulta', function(req, res, next){
 // Website you wish to allow to connect
