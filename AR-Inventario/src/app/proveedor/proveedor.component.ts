@@ -6,6 +6,7 @@ import { ArduinoServiceService } from '../Services/arduino-service.service';
   templateUrl: './proveedor.component.html',
   styleUrls: ['./proveedor.component.css']
 })
+
 export class ProveedorComponent implements OnInit {
 
   constructor(public arduinoServ: ArduinoServiceService) { }
@@ -19,6 +20,7 @@ export class ProveedorComponent implements OnInit {
     sucursal: "",
     sector: ""
   }
+
   get(prov: ProveedorComponent){
     console.log(prov)
   }
@@ -41,6 +43,7 @@ export class ProveedorComponent implements OnInit {
     this.arduinoServ.addProveedor(proveedor).subscribe((result) =>{
       console.log("Creado:" + result);
       this.getProveedor();
+      alert("Creado con éxito!");
     })
   }
 
@@ -48,6 +51,7 @@ export class ProveedorComponent implements OnInit {
     this.arduinoServ.updateProveedor(proveedor).subscribe((result) =>{
       console.log("Actualizado:" + result);
       this.getProveedor();
+      alert("Actualizado con éxito!");
     })
   }
 
@@ -56,6 +60,7 @@ export class ProveedorComponent implements OnInit {
     this.arduinoServ.deleteProveedor(id).subscribe((result)=>{
         console.log("Eliminado: "+ id);
         this.getProveedor();
+        alert("Eliminado con éxito!");
     })
   } 
   getProv(id){

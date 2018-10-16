@@ -3,37 +3,39 @@
     {{ title }}
   </h1>
 </div>
+
 <div class="container">
-  <h2>Inicio</h2>
+  <h2>Producto</h2>
   <table class="table table-striped">
     <thead class="thead-dark">
       <tr> 
         <th>id</th> 
         <th>Nombre Producto</th>
         <th>Precio Unitario</th>
-        <th>Placa</th>
+        <th>Plataforma</th>
         <th>Nombre Proveedor</th>
         <th>Eliminar</th>
         <th>Actualizar</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let product of productosList" >
+      <tr *ngFor="let product of productosList">
         <td>{{product.id}}</td>
         <td>{{product.nombreProducto}}</td>
         <td>{{product.precioUnitario}}</td>
-        <td>{{product.plataforma_placa}}</td>
+        <td>{{product.placa}}</td>
         <td>{{product.nombreProveedor}}</td>
         <td><button type="button" class="btn btn-primary" (click)="delete(product.id)">Eliminar </button></td>
         <td><button type="button" class="btn btn-primary" (click)="update(product)">Actualizar </button></td>
-        <!--<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">Actualizar</button></td>-->
       </tr>      
     </tbody>
   </table>
 </div>
 
 <!-- ventana emergente -->
-<!-- Modal Nuevo-->
+<!-- Button modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">Nuevo</button>
+<!-- Modal -->
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
@@ -60,20 +62,20 @@
             </div>
             <div class="col">
               <div class="form-group">
-              <label for="placa">Placa</label>
+                <label for="placa">Placa</label>
               </div>
               <!--drop down list-->
               <select [(ngModel)]="product.placa" (change)="onSelectProducto($event)" style="width: 150px" [ngModelOptions]="{standalone: true}">
-                  <option *ngFor="let plataforma of plataformaList" [ngValue]="plataforma.placa">{{plataforma.placa}}</option>   
+                <option *ngFor="let plataforma of plataformaList" [ngValue]="plataforma.placa">{{plataforma.placa}}</option>   
               </select>
             </div>
             <div class="col">
               <div class="form-group">
-               <label for="nombreProveedor">Proveedor</label>
+                <label for="nombreProveedor">Proveedor</label>
               </div>
               <!--drop down list-->
               <select [(ngModel)]="product.nombreProveedor" (change)="onSelectProducto($event)" style="width: 150px" [ngModelOptions]="{standalone: true}">
-               <option *ngFor="let proveedor of providerList" [ngValue]="proveedor.nombreProveedor">{{proveedor.nombreProveedor}}</option>   
+                <option *ngFor="let proveedor of providerList" [ngValue]="proveedor.nombreProveedor">{{proveedor.nombreProveedor}}</option>   
               </select>
             </div>
           </form>
@@ -82,66 +84,6 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
         <button type="button" class="btn btn-primary" (click)="add(product)">Enviar </button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-
-
-<!-- Button modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">Nuevo</button>
-<!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalCenterTitle">Nuevo</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-         <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-          <div class="row">
-            <form>
-            <div class="col">
-              <div class="form-group">
-                <label for="nombreProducto">Nombre Producto</label>
-                <input type="text" class="form-control" id="nombreProducto"  placeholder="Ingrese el nombre del producto" [(ngModel)]="product.nombreProducto" [ngModelOptions]="{standalone: true}">
-              </div>
-            </div>
-            <div class="col">
-              <div class="form-group">
-                <label for="precioUnitario">Precio Unitario</label>
-                <input type="text" class="form-control" id="precioUnitario" placeholder="Ingrese el precio" [(ngModel)]="product.precioUnitario" [ngModelOptions]="{standalone: true}">
-              </div>
-            </div>
-            <div class="col">
-                <div class="form-group">
-                  <label for="placa">placa</label>
-                </div>
-                <!--drop down list-->
-                <select [(ngModel)]="product.placa" (change)="onSelectProducto($event)" style="width: 120px" [ngModelOptions]="{standalone: true}">
-                    <option *ngFor="let plataforma of plataformaList" [ngValue]="plataforma.placa">{{plataforma.placa}}</option>   
-                </select>
-            </div>
-            <div class="col">
-              <div class="form-group">
-                <label for="nombreProveedor">Proveedor</label>
-              </div>
-              <!--drop down list-->
-              <select [(ngModel)]="product.nombreProveedor" (change)="onSelectProducto($event)" style="width: 120px" [ngModelOptions]="{standalone: true}">
-                  <option *ngFor="let proveedor of providerList" [ngValue]="proveedor.nombreProveedor">{{proveedor.nombreProveedor}}</option>   
-              </select>
-          </div>
-          </form>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary" (click)="update(product)">Enviar </button>
       </div>
     </div>
   </div>

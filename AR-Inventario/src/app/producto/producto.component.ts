@@ -60,6 +60,7 @@ import { ProductoService } from '../Services/producto.service';
     this.arduinoServ.add(product).subscribe((result) =>{
       console.log("Creado:" + result);
       this.get();
+      alert("Creado con éxito!");
     })
   }
 
@@ -67,6 +68,7 @@ import { ProductoService } from '../Services/producto.service';
     this.arduinoServ.update(product).subscribe((result) =>{
       console.log("Actualizado:" + result);
       this.get();
+      alert("Actualizado con éxito!");
     })
   }
 
@@ -75,6 +77,7 @@ import { ProductoService } from '../Services/producto.service';
     this.arduinoServ.delete(id).subscribe((result)=>{
         console.log("Eliminado: "+ id);
         this.get();
+        alert("Eliminado con éxito!");
     })
   } 
 
@@ -82,4 +85,5 @@ import { ProductoService } from '../Services/producto.service';
     console.log(event)
   }
 
+  
 }

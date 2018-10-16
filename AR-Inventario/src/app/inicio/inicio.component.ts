@@ -30,9 +30,7 @@ export class InicioComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getProveedor();
-    this.getPlataforma();
-    this.get();
+
    }
   
   productosList:any;

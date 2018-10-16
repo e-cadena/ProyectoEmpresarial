@@ -48,7 +48,7 @@ export class ArduinoServiceService {
       observe: 'response'
     });
   }
-  
+
   getById(idTipo){
     return this.http.get(
     this.url+"/tipoProducto/id", {params: {
@@ -62,7 +62,7 @@ export class ArduinoServiceService {
   getProveedor(){
     return this.http.get(this.url+"/Proveedor")
   }
-  
+
   addProveedor(proveedor){
     return this.http.get(
     this.url+"/Proveedor/add", {params: {
@@ -90,7 +90,7 @@ export class ArduinoServiceService {
       observe: 'response'
     });
   }
-  
+
   getByIdProveedor(idProv){
     return this.http.get(
     this.url+"/Plataforma/id", {params: {
@@ -115,8 +115,7 @@ export class ArduinoServiceService {
   }
 
   updatePlataforma(plataforma){
-    plataforma.placa = "",
-    plataforma.version =""
+    plataforma.placa = "Arduino"
     return this.http.get(
     this.url+"/Plataforma/update", {params: {
       plataforma: JSON.stringify(plataforma)
@@ -133,7 +132,7 @@ export class ArduinoServiceService {
       observe: 'response'
     });
   }
-  
+ 
   getByIdPlataforma(idProv){
     return this.http.get(
     this.url+"/Plataforma/id", {params: {
@@ -154,19 +153,6 @@ export class ArduinoServiceService {
     // close modal specified by id
     let modal: any = this.url+"/Producto/add";
     modal.close();
-  }
-
-  ///Funciones actualizar modal
-  openProducto(id: string) {
-    // open modal specified by id
-    let modal: any = this.url+"/Proveedor/update";
-    modal.openProducto();
-  }
-
-  closeProducto(id: string) {
-    // close modal specified by id
-    let modal: any = this.url+"/Proveedor/update";
-    modal.closeProducto();
   }
 
   getUsuario(user){
