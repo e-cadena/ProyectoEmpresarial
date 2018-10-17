@@ -14,8 +14,8 @@ import { ProductoService } from '../Services/producto.service';
     id: 0,
     nombreProducto: '',
     precioUnitario: 0.00 ,
-    plataforma_placa: '',
-    proveedor_nombreProveedor: ''
+    placa: '',
+    nombreProveedor: ''
   }
   
   constructor(public productoServ:ProductoService, public arduinoServ:ArduinoServiceService) { }
@@ -85,5 +85,4 @@ import { ProductoService } from '../Services/producto.service';
     console.log(event)
   }
 
-  
 }

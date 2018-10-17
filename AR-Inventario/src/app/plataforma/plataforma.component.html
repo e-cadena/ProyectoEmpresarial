@@ -1,11 +1,11 @@
 <div class="row">
-  <h1 class="text-center">
-    {{title}}
-  </h1>
+  <h1 class="text-center">{{title}}</h1>
 </div>
   
 <div class="container">
+  <br>
   <h2>Plataforma</h2>
+  <br>
   <table class="table table-striped">
     <thead class="thead-dark">
       <tr> 
@@ -61,7 +61,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary" (click)="addPlataforma(plataforma)">Enviar </button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="addPlataforma(plataforma)">Enviar </button>
       </div>
     </div>
   </div>

@@ -25,7 +25,6 @@ sequelize
   console.error('Unable to connect to the database:', err);
 });
 
-
 //modelos de tablas
 //Tabla Usuario
 const User = sequelize.define('Usuario', {
@@ -111,27 +110,27 @@ const Producto  = sequelize.define('Productos', {
 
 //tabla ProductorxProveedor
 const ProductosxProveedor = sequelize.define('ProductosxProveedor', {
-      proveedor_id: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: Proveedor,
-          key: "id"
-        },
-        associate: function(modelos){
-          modelos.ProductosxProveedor.hasMany(modelos.Proveedor)
-        }
-      },
-      producto_id: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: Producto,
-          key: "id"
-        },
-        associate: function(modelos){
-          modelos.ProductosxProveedor.hasMany(modelos.Producto)
-        }
-      }
-  });
+  proveedor_id: {
+    type: Sequelize.INTEGER,
+    references: {
+      model: Proveedor,
+      key: "id"
+    },
+    associate: function(modelos){
+      modelos.ProductosxProveedor.hasMany(modelos.Proveedor)
+    }
+  },
+  producto_id: {
+    type: Sequelize.INTEGER,
+    references: {
+      model: Producto,
+      key: "id"
+    },
+    associate: function(modelos){
+      modelos.ProductosxProveedor.hasMany(modelos.Producto)
+    }
+  }
+});
  
 //tabla Facturas
 const Factura = sequelize.define('Facturas', {
@@ -149,7 +148,6 @@ const Factura = sequelize.define('Facturas', {
   }
 });
   
-
 //tabla detalleFacturas
 const detalleFactura = sequelize.define('detalleFacturas', {
   precio: {
@@ -182,8 +180,6 @@ const detalleFactura = sequelize.define('detalleFacturas', {
     }
   }
 });
-
-
 
 /*
 //force: true will drop the table if it already exists Usuario
@@ -267,11 +263,10 @@ detalleFactura.sync({force: true}).then(() => {
 });
 */
 
-
-
 //Usuario -> todos los usuarios
 router.get('/Usuario', function(req, res, next) {
-  User.findAll().then(users => {
+  User.findAll()
+  .then(users => {
       res.send(users);
   })
 });
@@ -293,7 +288,8 @@ router.get('/Usuario/add', function(req, res, next) {
 
 //Usuarios/update -> modificar unicamente el nombre
 router.get('/Usuario/update', function(req, res, next) {
-  User.findById(2).then(userId =>{
+  User.findById(2)
+  .then(userId =>{
     if(userId != null){
       userId.update({usuario:"Lucho",password: userId.password})
         .then(update =>{
@@ -312,7 +308,8 @@ router.get('/Usuario/update', function(req, res, next) {
 
 //Usuarios/delete -> eliminar el usuario cualquiera
 router.get('/Usuario/delete', function(req, res, next) {
-   User.findById(9).then(userId =>{
+   User.findById(9)
+   .then(userId =>{
     if(userId != null){ 
     userId.destroy()
      .then(destroy =>{
@@ -330,13 +327,11 @@ router.get('/Usuario/delete', function(req, res, next) {
 });
 
 
-
-
-
 //CRUD ProductosxProveedor
 //ProductosxProveedor -> todos los ProductosxProveedor
 router.get('/ProductosxProveedor', function(req, res, next) {
-  ProductosxProveedor.findAll().then(ProductosxProveedor => {
+  ProductosxProveedor.findAll()
+  .then(ProductosxProveedor => {
       res.send(ProductosxProveedor);
   })
 });
@@ -357,7 +352,8 @@ router.get('/ProductosxProveedor/add', function(req, res, next) {
 
 //ProductosxProveedor/update -> modificar 
 router.get('/ProductosxProveedor/update', function(req, res, next) {
-  ProductosxProveedor.findById(1).then(ProductosxProveedor =>{
+  ProductosxProveedor.findById(1)
+  .then(ProductosxProveedor =>{
     if(ProductosxProveedor != null){
       ProductosxProveedor.update({proveedor_id: '1',producto_id: '1'})
         .then(update =>{
@@ -376,8 +372,8 @@ router.get('/ProductosxProveedor/update', function(req, res, next) {
 
 //ProductosxProveedor/delete -> eliminar 
 router.get('/ProductosxProveedor/delete', function(req, res, next) {
-  
-  ProductosxProveedor.findById(2).then(ProductosxProveedor =>{
+  ProductosxProveedor.findById(2)
+  .then(ProductosxProveedor =>{
     if(ProductosxProveedor != null){ 
       ProductosxProveedor.destroy()
      .then(destroy =>{
@@ -395,12 +391,11 @@ router.get('/ProductosxProveedor/delete', function(req, res, next) {
 });
 
 
-
-
 //CRUD DETALLE FACTURA
 //detalleFacturas-> todos los detalles de factura
 router.get('/detalleFactura', function(req, res, next) {
-  detalleFactura.findAll().then(detalleFactura => {
+  detalleFactura.findAll()
+  .then(detalleFactura => {
       res.send(detalleFactura);
   })
 });
@@ -425,7 +420,8 @@ router.get('/detalleFactura/add', function(req, res, next) {
 
 //detalleFacturas/update -> modificar 
 router.get('/detalleFactura/update', function(req, res, next) {
-  detalleFactura.findById(1).then(detalleFactura =>{
+  detalleFactura.findById(1)
+  .then(detalleFactura =>{
     if(detalleFactura != null){
       detalleFactura.update({producto_id: 1, factura_id: 2})
         .then(update =>{
@@ -444,8 +440,8 @@ router.get('/detalleFactura/update', function(req, res, next) {
 
 //detalleFacturas/delete -> eliminar 
 router.get('/detalleFactura/delete', function(req, res, next) {
-  
-  detalleFactura.findById(5).then(detalleFactura =>{
+  detalleFactura.findById(5)
+  .then(detalleFactura =>{
     if(detalleFactura != null){ 
       detalleFactura.destroy()
      .then(destroy =>{
@@ -462,10 +458,12 @@ router.get('/detalleFactura/delete', function(req, res, next) {
   });
 });
 
+
 //CRUD FACTURA
 //Factura-> todos las facturas
 router.get('/Factura', function(req, res, next) {
-  Factura.findAll().then(Factura => {
+  Factura.findAll()
+  .then(Factura => {
       res.send(Factura);
   })
 });
@@ -488,7 +486,8 @@ router.get('/Factura/add', function(req, res, next) {
 
 //Factura/update -> modificar 
 router.get('/Factura/update', function(req, res, next) {
-  Factura.findById(2).then(Factura =>{
+  Factura.findById(2)
+  .then(Factura =>{
     if(Factura != null){
       Factura.update({numeroFactura: '002', total:'360.00'})
         .then(update =>{
@@ -507,8 +506,8 @@ router.get('/Factura/update', function(req, res, next) {
 
 //Factura/delete -> eliminar 
 router.get('/Factura/delete', function(req, res, next) {
-  
-  Factura.findById(3).then(Factura =>{
+  Factura.findById(3)
+  .then(Factura =>{
     if(Factura != null){ 
       Factura.destroy()
      .then(destroy =>{
@@ -525,10 +524,12 @@ router.get('/Factura/delete', function(req, res, next) {
   });
 });
 
+
 //CRUD TIPO PRODUCTO
 //tipoProducto -> todos los tipos de producto
 router.get('/tipoProducto', function(req, res, next) {
-  tipoProducto.findAll().then(tipoProducto => {
+  tipoProducto.findAll()
+  .then(tipoProducto => {
       res.send(tipoProducto);
   })
 });
@@ -537,7 +538,6 @@ router.get('/tipoProducto', function(req, res, next) {
 router.get('/tipoProducto/add', function(req, res, next) {
   tipoProducto.build({
     nombreProducto: 'Sensor',
-    
   }).save()
   .then(tipoProducto => {
     res.send(tipoProducto);
@@ -545,12 +545,12 @@ router.get('/tipoProducto/add', function(req, res, next) {
   .catch(error => {
     console.log(error)
   })
-
 });
 
 //tipoProducto/update -> modificar 
 router.get('/tipoProducto/update', function(req, res, next) {
-  tipoProducto.findById(1).then(tipoProducto =>{
+  tipoProducto.findById(0)
+  .then(tipoProducto =>{
     if(tipoProducto != null){
       tipoProducto.update({ nombreProducto: 'LED'})
         .then(update =>{
@@ -569,8 +569,8 @@ router.get('/tipoProducto/update', function(req, res, next) {
 
 //tipoProducto/delete -> eliminar 
 router.get('/tipoProducto/delete', function(req, res, next) {
-  
-  tipoProducto.findById(3).then(id_Producto =>{
+  tipoProducto.findById(0)
+  .then(id_Producto =>{
     if(tipoProducto != null){ 
       tipoProducto.destroy()
      .then(destroy =>{
@@ -589,17 +589,16 @@ router.get('/tipoProducto/delete', function(req, res, next) {
 });
 
 router.get('/tipoProducto/id', function(req, res, next) {
-
-   // Website you wish to allow to connect
-   res.setHeader('Access-Control-Allow-Origin', '*');
-   // Request methods you wish to allow
-   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-   // Set to true if you need the website to include cookies in the requests sent
-   // to the API (e.g. in case you use sessions)
-   res.setHeader('Access-Control-Allow-Credentials', true);
-  
+// Website you wish to allow to connect
+res.setHeader('Access-Control-Allow-Origin', '*');
+// Request methods you wish to allow
+res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+// Set to true if you need the website to include cookies in the requests sent
+// to the API (e.g. in case you use sessions)
+res.setHeader('Access-Control-Allow-Credentials', true);
    let idTipo = JSON.parse(req.query.idTProduct)
-    tipoProducto.findById(idTipo).then(tipoProduct =>{
+    tipoProducto.findById(idTipo)
+    .then(tipoProduct =>{
       res.send(tipoProduct);
     }).catch(error => {
       console.log(error)
@@ -607,16 +606,17 @@ router.get('/tipoProducto/id', function(req, res, next) {
 
 });
 
+
 //CRUD INICIO
 //Inicio -> todos los proveedores
 router.get('/Inicio', function(req, res, next) {
-  // Website you wish to allow to connect
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  // Request methods you wish to allow
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-  // Set to true if you need the website to include cookies in the requests sent
-  // to the API (e.g. in case you use sessions)
-  res.setHeader('Access-Control-Allow-Credentials', true);
+// Website you wish to allow to connect
+res.setHeader('Access-Control-Allow-Origin', '*');
+// Request methods you wish to allow
+res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+// Set to true if you need the website to include cookies in the requests sent
+// to the API (e.g. in case you use sessions)
+res.setHeader('Access-Control-Allow-Credentials', true);
  Proveedor.findAll().then(proveedor => {
      res.send(proveedor);
  })
@@ -624,13 +624,13 @@ router.get('/Inicio', function(req, res, next) {
 
 //Inicio/add -> añadir un nuevo proveedor
 router.get('/Inicio/add', function(req, res, next) {
-  // Website you wish to allow to connect
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  // Request methods you wish to allow
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-  // Set to true if you need the website to include cookies in the requests sent
-  // to the API (e.g. in case you use sessions)
-  res.setHeader('Access-Control-Allow-Credentials', true);
+// Website you wish to allow to connect
+res.setHeader('Access-Control-Allow-Origin', '*');
+// Request methods you wish to allow
+res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+// Set to true if you need the website to include cookies in the requests sent
+// to the API (e.g. in case you use sessions)
+res.setHeader('Access-Control-Allow-Credentials', true);
   let proveedor = JSON.parse(req.query.proveedor)
   Inicio.build({
           nombreProveedor: proveedor.nombreProveedor,
@@ -649,20 +649,19 @@ router.get('/Inicio/add', function(req, res, next) {
   })
  });
  
-  //Inicio/update -> modificar 
-  router.get('/Inicio/update', function(req, res, next) {
-  // Website you wish to allow to connect
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  // Request methods you wish to allow
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-  // Set to true if you need the website to include cookies in the requests sent
-  // to the API (e.g. in case you use sessions)
-  res.setHeader('Access-Control-Allow-Credentials', true);
+//Inicio/update -> modificar 
+router.get('/Inicio/update', function(req, res, next) {
+// Website you wish to allow to connect
+res.setHeader('Access-Control-Allow-Origin', '*');
+// Request methods you wish to allow
+res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+// Set to true if you need the website to include cookies in the requests sent
+// to the API (e.g. in case you use sessions)
+res.setHeader('Access-Control-Allow-Credentials', true);
   let Inicio = JSON.parse(req.query.proveedor)
   Inicio.findById(inicio.id).then(Inicio =>{
   if(Inicio != null){
     Inicio.update({ 
-
             })
       .then(update =>{
         res.send(update);
@@ -678,17 +677,15 @@ router.get('/Inicio/add', function(req, res, next) {
   });
  });
  
- //Inicio/delete -> eliminar
- router.get('/Inicio/delete', function(req, res, next) {
-  // Website you wish to allow to connect
-  res.setHeader('Access-Control-Allow-Origin', '*');
-
-  // Request methods you wish to allow
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
- 
-  // Set to true if you need the website to include cookies in the requests sent
-  // to the API (e.g. in case you use sessions)
-  res.setHeader('Access-Control-Allow-Credentials', true);
+//Inicio/delete -> eliminar
+router.get('/Inicio/delete', function(req, res, next) {
+// Website you wish to allow to connect
+res.setHeader('Access-Control-Allow-Origin', '*');
+// Request methods you wish to allow
+res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+// Set to true if you need the website to include cookies in the requests sent
+// to the API (e.g. in case you use sessions)
+res.setHeader('Access-Control-Allow-Credentials', true);
   Inicio.findById(req.query.id).then(Inicio =>{
     if(Inicio != null){ 
      Inicio.destroy()
@@ -706,36 +703,37 @@ router.get('/Inicio/add', function(req, res, next) {
   });
  });
 
- //CRUD PRODUCTO
+
+//CRUD PRODUCTO
 //Producto-> todos los productos
 router.get('/Producto', function(req, res, next) {
-  // Website you wish to allow to connect
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  // Request methods you wish to allow
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-  // Set to true if you need the website to include cookies in the requests sent
-  // to the API (e.g. in case you use sessions)
-  res.setHeader('Access-Control-Allow-Credentials', true);
-  Producto.findAll().then(producto => {
+// Website you wish to allow to connect
+res.setHeader('Access-Control-Allow-Origin', '*');
+// Request methods you wish to allow
+res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+// Set to true if you need the website to include cookies in the requests sent
+// to the API (e.g. in case you use sessions)
+res.setHeader('Access-Control-Allow-Credentials', true);
+  Producto.findAll()
+  .then(producto => {
       res.send(producto);
   })
 });
 
 //Producto/add -> añadir un nuevo producto
 router.get('/Producto/add', function(req, res, next) { 
-   // Website you wish to allow to connect
-   res.setHeader('Access-Control-Allow-Origin', '*');
-   // Request methods you wish to allow
-   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-   // Set to true if you need the website to include cookies in the requests sent
-   // to the API (e.g. in case you use sessions)
-   res.setHeader('Access-Control-Allow-Credentials', true);
+// Website you wish to allow to connect
+res.setHeader('Access-Control-Allow-Origin', '*');
+// Request methods you wish to allow
+res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+// Set to true if you need the website to include cookies in the requests sent
+// to the API (e.g. in case you use sessions)
+res.setHeader('Access-Control-Allow-Credentials', true);
    let producto = JSON.parse(req.query.product)
-
   Producto.build({
         nombreProducto:    producto.nombreProducto,
         precioUnitario:    producto.precioUnitario, 
-        plataforma_placa:  producto.plataforma_placa, 
+        plataforma_placa:  producto.placa, 
         nombreProveedor:   producto.nombreProveedor})
   .save(Producto)
   .then(Producto => {
@@ -748,17 +746,16 @@ router.get('/Producto/add', function(req, res, next) {
 
 //Producto/update -> modificar unicamente el nombre
 router.get('/Producto/update', function(req, res, next) {
-   // Website you wish to allow to connect
-   res.setHeader('Access-Control-Allow-Origin', '*');
-
-   // Request methods you wish to allow
-   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
- 
-   // Set to true if you need the website to include cookies in the requests sent
-   // to the API (e.g. in case you use sessions)
-   res.setHeader('Access-Control-Allow-Credentials', true);
+// Website you wish to allow to connect
+res.setHeader('Access-Control-Allow-Origin', '*');
+// Request methods you wish to allow
+res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+// Set to true if you need the website to include cookies in the requests sent
+// to the API (e.g. in case you use sessions)
+res.setHeader('Access-Control-Allow-Credentials', true);
    let producto = JSON.parse(req.query.product)
-  Producto.findById(producto.id).then(Producto =>{
+  Producto.findById(producto.id)
+  .then(Producto =>{
     if(Producto != null){
       Producto.update({
         nombreProducto:    producto.nombreProducto,
@@ -781,15 +778,13 @@ router.get('/Producto/update', function(req, res, next) {
 
 //Producto/delete -> eliminar el usuario cualquiera
 router.get('/Producto/delete', function(req, res, next) {
-   // Website you wish to allow to connect
-   res.setHeader('Access-Control-Allow-Origin', '*');
-
-   // Request methods you wish to allow
-   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
- 
-   // Set to true if you need the website to include cookies in the requests sent
-   // to the API (e.g. in case you use sessions)
-   res.setHeader('Access-Control-Allow-Credentials', true);
+// Website you wish to allow to connect
+res.setHeader('Access-Control-Allow-Origin', '*');
+// Request methods you wish to allow
+res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+// Set to true if you need the website to include cookies in the requests sent
+// to the API (e.g. in case you use sessions)
+res.setHeader('Access-Control-Allow-Credentials', true);
   Producto.findById(req.query.id).then(Producto =>{
     if(Producto != null){ 
       Producto.destroy()
@@ -799,24 +794,25 @@ router.get('/Producto/delete', function(req, res, next) {
      .catch(error => {
       console.log(error)
     });
-  }else{
-    res.send({error: "No encontrado para eliminar"});
-    }
-  }).catch(error => {
-    console.log(error)
+    }else{
+      res.send({error: "No encontrado para eliminar"});
+      }
+    }).catch(error => {
+      console.log(error)
   });
 });
+
 
 //CRUD PLATAFORMAS
 //Plataforma -> todos las plataformas
 router.get('/Plataforma', function(req, res, next) {
-  // Website you wish to allow to connect
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  // Request methods you wish to allow
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-  // Set to true if you need the website to include cookies in the requests sent
-  // to the API (e.g. in case you use sessions)
-  res.setHeader('Access-Control-Allow-Credentials', true);
+// Website you wish to allow to connect
+res.setHeader('Access-Control-Allow-Origin', '*');
+// Request methods you wish to allow
+res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+// Set to true if you need the website to include cookies in the requests sent
+// to the API (e.g. in case you use sessions)
+res.setHeader('Access-Control-Allow-Credentials', true);
  Plataforma.findAll().then(plataforma => {
      res.send(plataforma);
  })
@@ -824,37 +820,35 @@ router.get('/Plataforma', function(req, res, next) {
 
 //Plataformas/add -> añadir un nueva plataforma
 router.get('/Plataforma/add', function(req, res, next) {
-  // Website you wish to allow to connect
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  // Request methods you wish to allow
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-  // Set to true if you need the website to include cookies in the requests sent
-  // to the API (e.g. in case you use sessions)
-  res.setHeader('Access-Control-Allow-Credentials', true);
-  let plataforma = JSON.parse(req.query.plataforma)
+// Website you wish to allow to connect
+res.setHeader('Access-Control-Allow-Origin', '*');
+// Request methods you wish to allow
+res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+// Set to true if you need the website to include cookies in the requests sent
+// to the API (e.g. in case you use sessions)
+res.setHeader('Access-Control-Allow-Credentials', true);
+ let plataforma = JSON.parse(req.query.plataforma)
  Plataforma.build({
        placa:   plataforma.placa,
        version: plataforma.version})
- .save(Plataforma)
- .then(Plataforma => {
-   res.send(Plataforma);
- })
- .catch(error => {
-   console.log(error)
- })
+  .save(Plataforma)
+    .then(Plataforma => {
+      res.send(Plataforma);
+    })
+  .catch(error => {
+    console.log(error)
+  })
 });
 
 //Plataforma/update -> modificar 
 router.get('/Plataforma/update', function(req, res, next) {
-   // Website you wish to allow to connect
-   res.setHeader('Access-Control-Allow-Origin', '*');
-
-   // Request methods you wish to allow
-   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
- 
-   // Set to true if you need the website to include cookies in the requests sent
-   // to the API (e.g. in case you use sessions)
-   res.setHeader('Access-Control-Allow-Credentials', true);
+// Website you wish to allow to connect
+res.setHeader('Access-Control-Allow-Origin', '*');
+// Request methods you wish to allow
+res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+// Set to true if you need the website to include cookies in the requests sent
+// to the API (e.g. in case you use sessions)
+res.setHeader('Access-Control-Allow-Credentials', true);
    let plataforma = JSON.parse(req.query.plataforma)
  Plataforma.findById(plataforma.id).then(Plataforma =>{
    if(Plataforma != null){
@@ -870,24 +864,22 @@ router.get('/Plataforma/update', function(req, res, next) {
    }else{
      res.send({error: "No encontrado para actualizar"});
    }
- }).catch(error => {
-   console.log(error)
- });
+  }).catch(error => {
+    console.log(error)
+  });
 });
 
 //Plataforma/delete -> eliminar 
 router.get('/Plataforma/delete', function(req, res, next) {
-   // Website you wish to allow to connect
-   res.setHeader('Access-Control-Allow-Origin', '*');
-
-   // Request methods you wish to allow
-   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
- 
-   // Set to true if you need the website to include cookies in the requests sent
-   // to the API (e.g. in case you use sessions)
-   res.setHeader('Access-Control-Allow-Credentials', true);
+// Website you wish to allow to connect
+res.setHeader('Access-Control-Allow-Origin', '*');
+// Request methods you wish to allow
+res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+// Set to true if you need the website to include cookies in the requests sent
+// to the API (e.g. in case you use sessions)
+res.setHeader('Access-Control-Allow-Credentials', true);
  Plataforma.findById(req.query.id).then(Plataforma =>{
-   if(Plataforma != null){ 
+  if(Plataforma != null){ 
      Plataforma.destroy()
     .then(destroy =>{
       res.send(destroy)
@@ -895,15 +887,16 @@ router.get('/Plataforma/delete', function(req, res, next) {
     .catch(error => {
      console.log(error)
    });
- }else{
+  }else{
    res.send({error: "No encontrado para eliminar"});
    }
- }).catch(error => {
+  }).catch(error => {
    console.log(error)
- });
+  });
 });
 
- //CRUD PROVEEDORES
+
+//CRUD PROVEEDORES
 //Proveedor -> todos los proveedores
 router.get('/Proveedor', function(req, res, next) {
   // Website you wish to allow to connect
@@ -928,35 +921,32 @@ router.get('/Proveedor/add', function(req, res, next) {
  // to the API (e.g. in case you use sessions)
  res.setHeader('Access-Control-Allow-Credentials', true);
  let proveedor = JSON.parse(req.query.proveedor)
- Proveedor.build({
-         nombreProveedor: proveedor.nombreProveedor,
-         direccion:       proveedor.direccion,
-         telefono:        proveedor.telefono,
-         horario:         proveedor.horario,
-         contactosWeb:    proveedor.contactosWeb,
-         sucursal:        proveedor.sucursal,
-         sector:          proveedor.sector})
- .save(Proveedor)
- .then(Proveedor => {
-   res.send(Proveedor);
- })
- .catch(error => {
-   console.log(error)
- })
-
+  Proveedor.build({
+          nombreProveedor: proveedor.nombreProveedor,
+          direccion:       proveedor.direccion,
+          telefono:        proveedor.telefono,
+          horario:         proveedor.horario,
+          contactosWeb:    proveedor.contactosWeb,
+          sucursal:        proveedor.sucursal,
+          sector:          proveedor.sector})
+  .save(Proveedor)
+    .then(Proveedor => {
+      res.send(Proveedor);
+    })
+    .catch(error => {
+      console.log(error)
+    })
 });
 
 //Proveedor/update -> modificar 
 router.get('/Proveedor/update', function(req, res, next) {
-  // Website you wish to allow to connect
-  res.setHeader('Access-Control-Allow-Origin', '*');
-
-  // Request methods you wish to allow
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-
-  // Set to true if you need the website to include cookies in the requests sent
-  // to the API (e.g. in case you use sessions)
-  res.setHeader('Access-Control-Allow-Credentials', true);
+// Website you wish to allow to connect
+res.setHeader('Access-Control-Allow-Origin', '*');
+// Request methods you wish to allow
+res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+// Set to true if you need the website to include cookies in the requests sent
+// to the API (e.g. in case you use sessions)
+res.setHeader('Access-Control-Allow-Credentials', true);
   let proveedor = JSON.parse(req.query.proveedor)
  Proveedor.findById(proveedor.id).then(Proveedor =>{
    if(Proveedor != null){
@@ -1007,6 +997,7 @@ router.get('/Proveedor/delete', function(req, res, next) {
     console.log(error)
   });
 });
+
 
 //Consultas a la base de datos.
 router.get('/User/login', function(req,res, next){

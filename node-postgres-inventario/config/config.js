@@ -1,6 +1,5 @@
 const Sequelize = require('sequelize');
 
-
 //modelos de tablas
 //Tabla Usuario
 const User = sequelize.define('Usuario', {

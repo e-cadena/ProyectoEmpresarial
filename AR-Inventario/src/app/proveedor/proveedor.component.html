@@ -1,10 +1,10 @@
 <div class="row">
-    <h1 class="text-center">
-      {{ title }}
-    </h1>
-  </div>
+    <h1 class="text-center">{{ title }}</h1>
+</div>
 <div class="container">
+  <br>
   <h2>Proveedor</h2>
+  <br>
   <table class="table table-striped">
     <thead class="thead-dark">
       <tr> 
@@ -60,16 +60,16 @@
           </div>
         </div>
         <div class="col">
-        <div class="form-group">
-          <label for="direccion">Direccion</label>
-          <input type="text" class="form-control" id="direccion" placeholder="Ingrese la direccion" [(ngModel)]="proveedor.direccion" [ngModelOptions]="{standalone: true}">
-        </div>
+          <div class="form-group">
+            <label for="direccion">Dirección</label>
+            <input type="text" class="form-control" id="direccion" placeholder="Ingrese la dirección" [(ngModel)]="proveedor.direccion" [ngModelOptions]="{standalone: true}">
+          </div>
         </div>
         <div class="col">
-        <div class="form-group">
-          <label for="telefono">Teléfono</label>
-          <input type="text" class="form-control" id="telefono" placeholder="Teléfonos" [(ngModel)]="proveedor.telefono" [ngModelOptions]="{standalone: true}">
-        </div>
+          <div class="form-group">
+            <label for="telefono">Teléfono</label>
+            <input type="text" class="form-control" id="telefono" placeholder="Teléfono" [(ngModel)]="proveedor.telefono" [ngModelOptions]="{standalone: true}">
+          </div>
         </div>
         <div class="col">
           <div class="form-group">
@@ -79,14 +79,14 @@
         </div>
         <div class="col">
           <div class="form-group">
-            <label for="contactosWeb">Contactos Web</label>
-            <input type="text" class="form-control" id="contactosWeb" placeholder="Contactos Web" [(ngModel)]="proveedor.contactosWeb" [ngModelOptions]="{standalone: true}">
+            <label for="contactosWeb">Correo</label>
+            <input type="text" class="form-control" id="contactosWeb" placeholder="prov@prov.com" [(ngModel)]="proveedor.contactosWeb" [ngModelOptions]="{standalone: true}">
           </div>
         </div>
         <div class="col">
             <div class="form-group">
               <label for="sucursal">Sucursal</label>
-              <input type="text" class="form-control" id="sucursal" placeholder="Sucursal" [(ngModel)]="proveedor.sucursal" [ngModelOptions]="{standalone: true}">
+              <input type="text" class="form-control" id="sucursal" placeholder="Número de Sucursal" [(ngModel)]="proveedor.sucursal" [ngModelOptions]="{standalone: true}">
             </div>
         </div>
         <div class="col">
@@ -100,7 +100,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary" (click)="addProveedor(proveedor)">Enviar </button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="addProveedor(proveedor)">Enviar </button>
       </div>
     </div>
   </div>

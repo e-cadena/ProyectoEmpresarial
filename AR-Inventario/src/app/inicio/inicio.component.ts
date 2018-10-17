@@ -12,12 +12,6 @@ import { ProductoService } from '../Services/producto.service';
 })
 export class InicioComponent implements OnInit {
 
-  arduinocomp: ArduinoComp = {
-    nombre: '',
-    version: '',
-    direccion: ''
-  }
-
   product: any = {
     id: 0,
     nombreProducto: ''
@@ -30,8 +24,8 @@ export class InicioComponent implements OnInit {
   }
 
   ngOnInit() {
-
-   }
+    
+  }
   
   productosList:any;
   providerList:any;
