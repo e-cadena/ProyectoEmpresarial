@@ -115,7 +115,7 @@ export class ArduinoServiceService {
   }
 
   updatePlataforma(plataforma){
-    plataforma.placa = "Arduino"
+    plataforma.placa = "Raspberry Pi"
       return this.http.get(
         this.url+"/Plataforma/update", {params: {
           plataforma: JSON.stringify(plataforma)

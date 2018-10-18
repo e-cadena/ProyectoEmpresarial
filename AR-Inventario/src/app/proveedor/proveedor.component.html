@@ -1,6 +1,7 @@
 <div class="row">
     <h1 class="text-center">{{ title }}</h1>
 </div>
+
 <div class="container">
   <br>
   <h2>Proveedor</h2>
@@ -13,7 +14,7 @@
         <th>Dirección</th>
         <th>Teléfono</th>
         <th>Horario</th>
-        <th>Correo</th>
+        <th>Contactos Web</th>
         <th>Sucursal</th>
         <th>Sector</th>
         <th>Eliminar</th>
@@ -37,7 +38,7 @@
     </tbody>
   </table>
 </div>
-<!-- ventana emergente --> 
+
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">Nuevo</button>
 <!-- Modal -->
@@ -45,7 +46,7 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalCenterTitle">Nuevo Ingreso</h5>
+        <h5 class="modal-title" id="exampleModalCenterTitle">Nuevo Proveedor</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -68,18 +69,18 @@
         <div class="col">
           <div class="form-group">
             <label for="telefono">Teléfono</label>
-            <input type="text" class="form-control" id="telefono" placeholder="Teléfono" [(ngModel)]="proveedor.telefono" [ngModelOptions]="{standalone: true}">
+            <input type="text" class="form-control" id="telefono" placeholder="ingrese el teléfono" [(ngModel)]="proveedor.telefono" [ngModelOptions]="{standalone: true}">
           </div>
         </div>
         <div class="col">
           <div class="form-group">
             <label for="horario">Horario</label>
-            <input type="text" class="form-control" id="horario" placeholder="Horario" [(ngModel)]="proveedor.horario" [ngModelOptions]="{standalone: true}">
+            <input type="text" class="form-control" id="horario" placeholder="Horario de atención" [(ngModel)]="proveedor.horario" [ngModelOptions]="{standalone: true}">
           </div>
         </div>
         <div class="col">
           <div class="form-group">
-            <label for="contactosWeb">Correo</label>
+            <label for="contactosWeb">contactos Web</label>
             <input type="text" class="form-control" id="contactosWeb" placeholder="prov@prov.com" [(ngModel)]="proveedor.contactosWeb" [ngModelOptions]="{standalone: true}">
           </div>
         </div>
@@ -100,7 +101,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="addProveedor(proveedor)">Enviar </button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="addProveedor(proveedor)">Crear </button>
       </div>
     </div>
   </div>
