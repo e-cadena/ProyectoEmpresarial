@@ -181,6 +181,7 @@ const detalleFactura = sequelize.define('detalleFacturas', {
     }
   });
 
+
 /*
   //force: true will drop the table if it already exists Usuario
   User.sync({force: true}).then(() => {

@@ -72,4 +72,17 @@ export class ProveedorComponent implements OnInit {
     });
     return idProv
   }
+
+  /*disable() {
+    document.getElementById("myText").disable = true;
+  }
+
+  undisable() {
+    document.getElementById("myText").diseable = false;
+  }
+
+  habilitar(){
+    document.getElementById("Enviar").Enviar = true;
+  }*/
+
 }
