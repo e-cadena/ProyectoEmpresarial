@@ -75,9 +75,9 @@ import { ProductoService } from '../Services/producto.service';
   delete(id){
     console.log(id);
     this.arduinoServ.delete(id).subscribe((result)=>{
-        console.log("Eliminado: "+ id);
-        this.get();
-        alert("Eliminado con éxito!");
+      console.log("Eliminado: "+ id);
+      this.get();
+      alert("Eliminado con éxito!");
     })
   } 
 

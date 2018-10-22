@@ -11,6 +11,8 @@ export class ProveedorComponent implements OnInit {
 
   constructor(public arduinoServ: ArduinoServiceService) { }
 
+  buttonDisabled: boolean = false;
+    
   proveedor:any = {
     nombreProveedor: "",
     direccion: "",
@@ -43,6 +45,7 @@ export class ProveedorComponent implements OnInit {
     this.arduinoServ.addProveedor(proveedor).subscribe((result) =>{
       console.log("Creado:" + result);
       this.getProveedor();
+      this.buttonDisabled =true
       alert("Creado con éxito!");
     })
   }
@@ -63,6 +66,7 @@ export class ProveedorComponent implements OnInit {
         alert("Eliminado con éxito!");
     })
   } 
+
   getProv(id){
     let idProv: any = ""
     this.arduinoServ.getById(id).subscribe((tipoProv:any)=>{
@@ -73,16 +77,8 @@ export class ProveedorComponent implements OnInit {
     return idProv
   }
 
-  /*disable() {
-    document.getElementById("myText").disable = true;
+  disabled(){
+    this.buttonDisabled = true
   }
-
-  undisable() {
-    document.getElementById("myText").diseable = false;
-  }
-
-  habilitar(){
-    document.getElementById("Enviar").Enviar = true;
-  }*/
 
 }
