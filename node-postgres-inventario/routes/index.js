@@ -86,24 +86,24 @@ const Producto  = sequelize.define('Productos', {
     precioUnitario: {
       type: Sequelize.STRING
     },
-    placa: {
-      type: Sequelize.STRING,
+    tipo_id: {
+      type: Sequelize.INTEGER,
+      references: {
+        model: tipoProducto,
+        key: "id"
+      },
+      associate: function(modelos){
+        modelos.Producto.hasMany(modelos.tipoProducto)
+      }
+    },
+    plataforma_id: {
+      type: Sequelize.INTEGER,
       references: {
         model: Plataforma,
         key: "id"
       },
       associate: function(modelos){
-        modelos.Producto.hasMany(modelos.Plataforma)
-      }
-    },
-    nombreProveedor: {
-      type: Sequelize.STRING, 
-      references: {
-        model: Proveedor,
-        key: "id"
-      },
-      associate: function(modelos){
-        modelos.Producto.hasMany(modelos.Proveedor)
+        modelos.Producto.hasOne(modelos.Plataforma)
       }
     }
   });
@@ -218,7 +218,7 @@ const detalleFactura = sequelize.define('detalleFacturas', {
       direccion: 'Colon',
       telefono: '3552147',
       horario: '7:00 am',
-      contactosWeb: 'www.electronica@hotmail.com',
+      contactosWeb: 'electronica@hotmail.com',
       sucursal: ' EN 2',
       sector: 'Sur'
   });
@@ -261,7 +261,7 @@ const detalleFactura = sequelize.define('detalleFacturas', {
 });
 */
 
-  //Usuario -> todos los usuarios
+//Usuario -> todos los usuarios
   router.get('/Usuario', function(req, res, next) {
     User.findAll()
     .then(users => {
@@ -269,7 +269,7 @@ const detalleFactura = sequelize.define('detalleFacturas', {
    })
 });
 
-  //Usuarios/add -> añadir un nuevo usuario
+//Usuarios/add -> añadir un nuevo usuario
   router.get('/Usuario/add', function(req, res, next) {
     User.build({
       usuario: 'Henry',
@@ -283,7 +283,7 @@ const detalleFactura = sequelize.define('detalleFacturas', {
     })
 });
 
-  //Usuarios/update -> modificar unicamente el nombre
+//Usuarios/update -> modificar unicamente el nombre
   router.get('/Usuario/update', function(req, res, next) {
     User.findById(2)
     .then(userId =>{
@@ -303,7 +303,7 @@ const detalleFactura = sequelize.define('detalleFacturas', {
    });
 });
 
-  //Usuarios/delete -> eliminar el usuario cualquiera
+//Usuarios/delete -> eliminar el usuario cualquiera
   router.get('/Usuario/delete', function(req, res, next) {
     User.findById(9)
     .then(userId =>{
@@ -325,7 +325,7 @@ const detalleFactura = sequelize.define('detalleFacturas', {
 
 
   //CRUD ProductosxProveedor
-  //ProductosxProveedor -> todos los ProductosxProveedor
+//ProductosxProveedor -> todos los ProductosxProveedor
   router.get('/ProductosxProveedor', function(req, res, next) {
     ProductosxProveedor.findAll()
     .then(ProductosxProveedor => {
@@ -333,7 +333,7 @@ const detalleFactura = sequelize.define('detalleFacturas', {
   })
 });
 
-  //ProductosxProveedor/add -> añadir un nuevo ProductosxProveedor
+//ProductosxProveedor/add -> añadir un nuevo ProductosxProveedor
   router.get('/ProductosxProveedor/add', function(req, res, next) {
     ProductosxProveedor.build({
       proveedor_id: 1,
@@ -347,7 +347,7 @@ const detalleFactura = sequelize.define('detalleFacturas', {
   })
 });
 
-  //ProductosxProveedor/update -> modificar 
+//ProductosxProveedor/update -> modificar 
   router.get('/ProductosxProveedor/update', function(req, res, next) {
     ProductosxProveedor.findById(1)
     .then(ProductosxProveedor =>{
@@ -367,7 +367,7 @@ const detalleFactura = sequelize.define('detalleFacturas', {
   });
 });
 
-  //ProductosxProveedor/delete -> eliminar 
+//ProductosxProveedor/delete -> eliminar 
   router.get('/ProductosxProveedor/delete', function(req, res, next) {
     ProductosxProveedor.findById(2)
     .then(ProductosxProveedor =>{
@@ -389,7 +389,7 @@ const detalleFactura = sequelize.define('detalleFacturas', {
 
 
   //CRUD DETALLE FACTURA
-  //detalleFacturas-> todos los detalles de factura
+//detalleFacturas-> todos los detalles de factura
   router.get('/detalleFactura', function(req, res, next) {
     detalleFactura.findAll()
     .then(detalleFactura => {
@@ -397,7 +397,7 @@ const detalleFactura = sequelize.define('detalleFacturas', {
   })
 });
 
-  //detalleFacturas/add -> añadir un nuevo detalleFactura
+//detalleFacturas/add -> añadir un nuevo detalleFactura
   router.get('/detalleFactura/add', function(req, res, next) {
     detalleFactura.build({
       numeroFactura: '001',
@@ -415,7 +415,7 @@ const detalleFactura = sequelize.define('detalleFacturas', {
   })
 });
 
-  //detalleFacturas/update -> modificar 
+//detalleFacturas/update -> modificar 
   router.get('/detalleFactura/update', function(req, res, next) {
     detalleFactura.findById(1)
     .then(detalleFactura =>{
@@ -435,7 +435,7 @@ const detalleFactura = sequelize.define('detalleFacturas', {
   });
 });
 
-  //detalleFacturas/delete -> eliminar 
+//detalleFacturas/delete -> eliminar 
   router.get('/detalleFactura/delete', function(req, res, next) {
     detalleFactura.findById(5)
     .then(detalleFactura =>{
@@ -457,7 +457,7 @@ const detalleFactura = sequelize.define('detalleFacturas', {
 
 
   //CRUD FACTURA
-  //Factura-> todos las facturas
+//Factura-> todos las facturas
   router.get('/Factura', function(req, res, next) {
     Factura.findAll()
     .then(Factura => {
@@ -465,7 +465,7 @@ const detalleFactura = sequelize.define('detalleFacturas', {
   })
 });
 
-  //Factura/add -> añadir una nueva factura
+//Factura/add -> añadir una nueva factura
   router.get('/Factura/add', function(req, res, next) {
     Factura.build({
       numeroFactura: '001',
@@ -481,7 +481,7 @@ const detalleFactura = sequelize.define('detalleFacturas', {
   })
 });
 
-  //Factura/update -> modificar 
+//Factura/update -> modificar 
   router.get('/Factura/update', function(req, res, next) {
     Factura.findById(2)
     .then(Factura =>{
@@ -501,7 +501,7 @@ const detalleFactura = sequelize.define('detalleFacturas', {
   });
 });
 
-  //Factura/delete -> eliminar 
+//Factura/delete -> eliminar 
   router.get('/Factura/delete', function(req, res, next) {
     Factura.findById(3)
     .then(Factura =>{
@@ -523,7 +523,7 @@ const detalleFactura = sequelize.define('detalleFacturas', {
 
 
   //CRUD TIPO PRODUCTO
-  //tipoProducto -> todos los tipos de producto
+//tipoProducto -> todos los tipos de producto
   router.get('/tipoProducto', function(req, res, next) {
     tipoProducto.findAll()
     .then(tipoProducto => {
@@ -531,7 +531,7 @@ const detalleFactura = sequelize.define('detalleFacturas', {
   })
 });
 
-  //tipoProducto/add -> añadir un nuevo tipo de  producto
+//tipoProducto/add -> añadir un nuevo tipo de  producto
   router.get('/tipoProducto/add', function(req, res, next) {
     tipoProducto.build({
       nombreProducto: 'Sensor',
@@ -544,7 +544,7 @@ const detalleFactura = sequelize.define('detalleFacturas', {
   })
 });
 
-  //tipoProducto/update -> modificar 
+//tipoProducto/update -> modificar 
   router.get('/tipoProducto/update', function(req, res, next) {
     tipoProducto.findById(0)
     .then(tipoProducto =>{
@@ -564,7 +564,7 @@ const detalleFactura = sequelize.define('detalleFacturas', {
   });
 });
 
-  //tipoProducto/delete -> eliminar 
+//tipoProducto/delete -> eliminar 
   router.get('/tipoProducto/delete', function(req, res, next) {
     tipoProducto.findById(0)
     .then(id_Producto =>{
@@ -604,7 +604,7 @@ const detalleFactura = sequelize.define('detalleFacturas', {
 
 
   //CRUD INICIO
-  //Inicio -> todos los proveedores
+//Inicio -> todos los proveedores
   router.get('/Inicio', function(req, res, next) {
   // Website you wish to allow to connect
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -618,7 +618,7 @@ const detalleFactura = sequelize.define('detalleFacturas', {
   })
 });
 
-  //Inicio/add -> añadir un nuevo proveedor
+//Inicio/add -> añadir un nuevo proveedor
   router.get('/Inicio/add', function(req, res, next) {
   // Website you wish to allow to connect
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -645,7 +645,7 @@ const detalleFactura = sequelize.define('detalleFacturas', {
     })
  });
  
-  //Inicio/update -> modificar 
+//Inicio/update -> modificar 
   router.get('/Inicio/update', function(req, res, next) {
   // Website you wish to allow to connect
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -673,7 +673,7 @@ const detalleFactura = sequelize.define('detalleFacturas', {
     });
  });
  
-  //Inicio/delete -> eliminar
+//Inicio/delete -> eliminar
   router.get('/Inicio/delete', function(req, res, next) {
   // Website you wish to allow to connect
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -701,7 +701,7 @@ const detalleFactura = sequelize.define('detalleFacturas', {
 
 
   //CRUD PRODUCTO
-  //Producto-> todos los productos
+//Producto-> todos los productos
   router.get('/Producto', function(req, res, next) {
   // Website you wish to allow to connect
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -716,7 +716,7 @@ const detalleFactura = sequelize.define('detalleFacturas', {
     })
 });
 
-  //Producto/add -> añadir un nuevo producto
+//Producto/add -> añadir un nuevo producto
   router.get('/Producto/add', function(req, res, next) { 
   // Website you wish to allow to connect
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -740,7 +740,7 @@ const detalleFactura = sequelize.define('detalleFacturas', {
   })
 });
 
-  //Producto/update -> modificar unicamente el nombre
+//Producto/update -> modificar unicamente el nombre
   router.get('/Producto/update', function(req, res, next) {
   // Website you wish to allow to connect
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -756,8 +756,8 @@ const detalleFactura = sequelize.define('detalleFacturas', {
         Producto.update({
           nombreProducto:    producto.nombreProducto,
           precioUnitario:    producto.precioUnitario, 
-          placa:             plataforma.placa, 
-          nombreProveedor:   proveedor.nombreProveedor})
+          placa:             producto.placa, 
+          nombreProveedor:   producto.nombreProveedor})
           .then(update =>{
             res.send(update);
           })
@@ -772,7 +772,7 @@ const detalleFactura = sequelize.define('detalleFacturas', {
   });
 });
 
-  //Producto/delete -> eliminar el usuario cualquiera
+//Producto/delete -> eliminar el usuario cualquiera
   router.get('/Producto/delete', function(req, res, next) {
   // Website you wish to allow to connect
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -800,7 +800,7 @@ const detalleFactura = sequelize.define('detalleFacturas', {
 
 
   //CRUD PLATAFORMAS
-  //Plataforma -> todos las plataformas
+//Plataforma -> todos las plataformas
   router.get('/Plataforma', function(req, res, next) {
   // Website you wish to allow to connect
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -814,7 +814,7 @@ const detalleFactura = sequelize.define('detalleFacturas', {
   })
 });
 
-  //Plataformas/add -> añadir un nueva plataforma
+//Plataformas/add -> añadir un nueva plataforma
   router.get('/Plataforma/add', function(req, res, next) {
   // Website you wish to allow to connect
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -836,7 +836,7 @@ const detalleFactura = sequelize.define('detalleFacturas', {
    })
 });
 
-  //Plataforma/update -> modificar 
+//Plataforma/update -> modificar 
   router.get('/Plataforma/update', function(req, res, next) {
   // Website you wish to allow to connect
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -865,7 +865,7 @@ const detalleFactura = sequelize.define('detalleFacturas', {
   });
 });
 
-  //Plataforma/delete -> eliminar 
+//Plataforma/delete -> eliminar 
   router.get('/Plataforma/delete', function(req, res, next) {
   // Website you wish to allow to connect
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -893,7 +893,7 @@ const detalleFactura = sequelize.define('detalleFacturas', {
 
 
   //CRUD PROVEEDORES
-  //Proveedor -> todos los proveedores
+//Proveedor -> todos los proveedores
   router.get('/Proveedor', function(req, res, next) {
     // Website you wish to allow to connect
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -907,7 +907,7 @@ const detalleFactura = sequelize.define('detalleFacturas', {
   })
 });
 
-  //Proveedor/add -> añadir un nuevo proveedor
+//Proveedor/add -> añadir un nuevo proveedor
   router.get('/Proveedor/add', function(req, res, next) {
   // Website you wish to allow to connect
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -934,7 +934,7 @@ const detalleFactura = sequelize.define('detalleFacturas', {
     })
 });
 
-  //Proveedor/update -> modificar 
+//Proveedor/update -> modificar 
   router.get('/Proveedor/update', function(req, res, next) {
   // Website you wish to allow to connect
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -968,7 +968,7 @@ const detalleFactura = sequelize.define('detalleFacturas', {
   });
 });
 
-  //Proveedor/delete -> eliminar
+//Proveedor/delete -> eliminar
   router.get('/Proveedor/delete', function(req, res, next) {
   // Website you wish to allow to connect
   res.setHeader('Access-Control-Allow-Origin', '*');

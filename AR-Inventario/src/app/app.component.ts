@@ -31,7 +31,6 @@ export class AppComponent {
 
   Ingresar(user){
    this.getUsuario(user)
-   //this.ingreso = false
   }
 
   Cerrar(){

@@ -78,7 +78,7 @@ export class ProveedorComponent implements OnInit {
   }
 
   disabled(){
-    this.buttonDisabled = true
+    this.buttonDisabled = false;
   }
 
 }

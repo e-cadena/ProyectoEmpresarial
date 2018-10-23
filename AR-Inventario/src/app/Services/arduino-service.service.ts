@@ -42,8 +42,8 @@ export class ArduinoServiceService {
   
   delete(idProduct){
     return this.http.get(
-    this.url+"/Producto/delete",{params: {
-      id: idProduct
+      this.url+"/Producto/delete",{params: {
+        id: idProduct
     },
       observe: 'response'
     });
@@ -76,7 +76,7 @@ export class ArduinoServiceService {
     proveedor.nombreProveedor = "Electronica123"
       return this.http.get(
         this.url+"/Proveedor/update", {params: {
-         proveedor: JSON.stringify(proveedor)
+          proveedor: JSON.stringify(proveedor)
     },
       observe: 'response'
     });
@@ -85,7 +85,7 @@ export class ArduinoServiceService {
   deleteProveedor(idProveedor){
     return this.http.get(
       this.url+"/Proveedor/delete",{params: {
-       id: idProveedor
+        id: idProveedor
     },
       observe: 'response'
     });
