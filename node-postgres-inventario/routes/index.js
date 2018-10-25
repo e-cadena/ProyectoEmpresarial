@@ -80,33 +80,33 @@ const tipoProducto = sequelize.define('tipoProductos', {
 
   //tabla Productos
 const Producto  = sequelize.define('Productos', {
-    nombreProducto: {
-      type: Sequelize.STRING
+  nombreProducto: {
+    type: Sequelize.STRING
+  },
+  precioUnitario: {
+    type: Sequelize.STRING
+  },
+  plataforma_id: {
+    type: Sequelize.INTEGER,
+    references: {
+      model: Plataforma,
+      key: "id"
     },
-    precioUnitario: {
-      type: Sequelize.STRING
-    },
-    tipo_id: {
-      type: Sequelize.INTEGER,
-      references: {
-        model: tipoProducto,
-        key: "id"
-      },
-      associate: function(modelos){
-        modelos.Producto.hasMany(modelos.tipoProducto)
-      }
-    },
-    plataforma_id: {
-      type: Sequelize.INTEGER,
-      references: {
-        model: Plataforma,
-        key: "id"
-      },
-      associate: function(modelos){
-        modelos.Producto.hasOne(modelos.Plataforma)
-      }
+    associate: function(modelos){
+      modelos.Producto.hasOne(modelos.Plataforma)
     }
-  });
+  },
+  proveedor_id: {
+    type: Sequelize.INTEGER,
+    references: {
+      model: Proveedor,
+      key: "id"
+    },
+    associate: function(modelos){
+      modelos.Producto.hasOne(modelos.Proveedor)
+    }
+  }
+});
 
   //tabla ProductorxProveedor
 const ProductosxProveedor = sequelize.define('ProductosxProveedor', {
@@ -642,8 +642,8 @@ const detalleFactura = sequelize.define('detalleFacturas', {
     })
     .catch(error => {
       console.log(error)
-    })
- });
+  })
+});
  
 //Inicio/update -> modificar 
   router.get('/Inicio/update', function(req, res, next) {
@@ -670,8 +670,8 @@ const detalleFactura = sequelize.define('detalleFacturas', {
     }
   }).catch(error => {
     console.log(error)
-    });
- });
+  });
+});
  
 //Inicio/delete -> eliminar
   router.get('/Inicio/delete', function(req, res, next) {
@@ -696,8 +696,8 @@ const detalleFactura = sequelize.define('detalleFacturas', {
       }
     }).catch(error => {
       console.log(error)
-    });
- });
+  });
+});
 
 
   //CRUD PRODUCTO
@@ -729,8 +729,8 @@ const detalleFactura = sequelize.define('detalleFacturas', {
     Producto.build({
           nombreProducto:    producto.nombreProducto,
           precioUnitario:    producto.precioUnitario, 
-          placa:             plataforma.placa, 
-          nombreProveedor:   proveedor.nombreProveedor})
+          placa:             plataforma_id.placa, 
+          nombreProveedor:   proveedor_id.nombreProveedor})
     .save(Producto)
     .then(Producto => {
       res.send(Producto);
@@ -756,8 +756,8 @@ const detalleFactura = sequelize.define('detalleFacturas', {
         Producto.update({
           nombreProducto:    producto.nombreProducto,
           precioUnitario:    producto.precioUnitario, 
-          placa:             producto.placa, 
-          nombreProveedor:   producto.nombreProveedor})
+          placa:             plataforma_id.placa, 
+          nombreProveedor:   proveedor_id.nombreProveedor})
           .then(update =>{
             res.send(update);
           })

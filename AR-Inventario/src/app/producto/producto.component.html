@@ -65,7 +65,7 @@
                 <label for="placa">Plataforma</label>
               </div>
               <!--drop down list-->
-              <select [(ngModel)]="platadorma.placa" (change)="onSelectProducto($event)" style="width: 150px" [ngModelOptions]="{standalone: true}">
+              <select [(ngModel)]="plataforma.placa" (change)="onSelectProducto($event)" style="width: 150px" [ngModelOptions]="{standalone: true}">
                 <option *ngFor="let plataforma of plataformaList" [ngValue]="plataforma.placa">{{plataforma.placa}}</option>   
               </select>
             </div>

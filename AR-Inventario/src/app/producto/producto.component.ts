@@ -18,7 +18,7 @@ import { ProductoService } from '../Services/producto.service';
     nombreProveedor: ''
   }
   
-  constructor(public productoServ:ProductoService, public arduinoServ:ArduinoServiceService) { }
+  constructor(public arduinoServ:ArduinoServiceService) { }
   
   gets(inic: ProductoComponent){
     console.log(inic)
