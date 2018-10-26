@@ -38,7 +38,7 @@ export class PlataformaComponent implements OnInit {
     this.arduinoServ.addPlataforma(plataforma).subscribe((result) =>{
       console.log("Creado:" + result);
       this.getPlataforma();
-      alert("Creado con éxito!");
+      alert("Creado con éxito! :)");
     })
   }
 
@@ -46,7 +46,7 @@ export class PlataformaComponent implements OnInit {
     this.arduinoServ.updatePlataforma(plataforma).subscribe((result) =>{
       console.log("Actualizado:" + result);
       this.getPlataforma();
-      alert("Actualizado con éxito!");
+      alert("Actualizado con éxito! :D");
     })
   }
 
@@ -55,7 +55,7 @@ export class PlataformaComponent implements OnInit {
     this.arduinoServ.deletePlataforma(id).subscribe((id)=>{
         console.log("Eliminado: "+ id);
         this.getPlataforma();
-        alert("Eliminado con éxito!");
+        alert("Eliminado con éxito! :0");
     })
   }
   getPlat(id){

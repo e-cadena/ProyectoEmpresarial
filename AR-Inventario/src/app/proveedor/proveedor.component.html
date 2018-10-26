@@ -31,8 +31,8 @@
         <td>{{proveedor.contactosWeb}}</td>
         <td>{{proveedor.sucursal}}</td>
         <td>{{proveedor.sector}}</td>
-        <td><button type="button" class="btn btn-primary" (click)="deleteProveedor(proveedor.id)">Eliminar </button></td>
-        <td><button type="button" class="btn btn-primary" (click)="updateProveedor(proveedor)">Actualizar </button>
+        <td><button type="button" class="btn btn-danger" (click)="deleteProveedor(proveedor.id)">Eliminar </button></td>
+        <td><button type="button" class="btn btn-warning" (click)="updateProveedor(proveedor)">Actualizar </button>
         </td>
       </tr>      
     </tbody>
@@ -40,7 +40,7 @@
 </div>
 
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">Nuevo</button>
+<button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModalCenter">Nuevo</button>
 <!-- Modal -->
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
@@ -101,7 +101,7 @@
         </div>
       <div class="modal-footer">
         <button type="button"  class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="button"  class="btn btn-primary" data-dismiss="modal" [disabled]="form.invalid" (click)="addProveedor(proveedor)" >Crear </button>
+        <button type="button"  class="btn btn-info" data-dismiss="modal" [disabled]="form.invalid" (click)="addProveedor(proveedor)" >Crear </button>
       </div>
     </div>
   </div>

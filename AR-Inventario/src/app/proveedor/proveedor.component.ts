@@ -46,7 +46,7 @@ export class ProveedorComponent implements OnInit {
       console.log("Creado:" + result);
       this.getProveedor();
       this.buttonDisabled =true
-      alert("Creado con éxito!");
+      alert("Creado con éxito! :)");
     })
   }
 
@@ -54,7 +54,7 @@ export class ProveedorComponent implements OnInit {
     this.arduinoServ.updateProveedor(proveedor).subscribe((result) =>{
       console.log("Actualizado:" + result);
       this.getProveedor();
-      alert("Actualizado con éxito!");
+      alert("Actualizado con éxito! :D");
     })
   }
 
@@ -63,7 +63,7 @@ export class ProveedorComponent implements OnInit {
     this.arduinoServ.deleteProveedor(id).subscribe((result)=>{
         console.log("Eliminado: "+ id);
         this.getProveedor();
-        alert("Eliminado con éxito!");
+        alert("Eliminado con éxito! :0");
     })
   } 
 

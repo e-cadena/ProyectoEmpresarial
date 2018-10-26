@@ -23,17 +23,17 @@
         <td>{{product.id}}</td>
         <td>{{product.nombreProducto}}</td>
         <td>{{product.precioUnitario}}</td>
-        <td>{{plataforma.placa}}</td>
-        <td>{{proveedor.nombreProveedor}}</td>
-        <td><button type="button" class="btn btn-primary" (click)="delete(product.id)">Eliminar </button></td>
-        <td><button type="button" class="btn btn-primary" (click)="update(product)">Actualizar </button></td>
+        <td>{{product.placa}}</td>
+        <td>{{product.nombreProveedor}}</td>
+        <td><button type="button" class="btn btn-danger" (click)="delete(product.id)">Eliminar </button></td>
+        <td><button type="button" class="btn btn-warning" (click)="update(product)">Actualizar </button></td>
       </tr>   
     </tbody>
   </table>
 </div>
 
 <!--Button modal-->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">Nuevo</button>
+<button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModalCenter">Nuevo</button>
 
 <!--Modal-->
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -66,7 +66,7 @@
               </div>
               <!--drop down list-->
               <select [(ngModel)]="plataforma.placa" (change)="onSelectProducto($event)" style="width: 150px" [ngModelOptions]="{standalone: true}">
-                <option *ngFor="let plataforma of plataformaList" [ngValue]="plataforma.placa">{{plataforma.placa}}</option>   
+                <option *ngFor="let plataforma of plataformaList" [ngValue]="plataforma.placa">{{product.placa}}</option>   
               </select>
             </div>
             <div class="col">
@@ -75,7 +75,7 @@
               </div>
               <!--drop down list-->
               <select [(ngModel)]="proveedor.nombreProveedor" (change)="onSelectProducto($event)" style="width: 150px" [ngModelOptions]="{standalone: true}">
-                <option *ngFor="let proveedor of providerList" [ngValue]="proveedor.nombreProveedor">{{proveedor.nombreProveedor}}</option>   
+                <option *ngFor="let proveedor of providerList" [ngValue]="proveedor.nombreProveedor">{{product.nombreProveedor}}</option>   
               </select>
             </div>
           </form>
@@ -83,7 +83,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="add(product)">Crear</button>
+        <button type="button" class="btn btn-info" data-dismiss="modal" (click)="add(product)">Crear</button>
       </div>
     </div>
   </div>

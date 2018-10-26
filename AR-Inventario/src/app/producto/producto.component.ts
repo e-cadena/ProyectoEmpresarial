@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ArduinoServiceService } from '../Services/arduino-service.service';
-import { ProductoService } from '../Services/producto.service';
 
 @Component({
   selector: 'app-producto',
@@ -60,7 +59,7 @@ import { ProductoService } from '../Services/producto.service';
     this.arduinoServ.add(product).subscribe((result) =>{
       console.log("Creado:" + result);
       this.get();
-      alert("Creado con éxito!");
+      alert("Creado con éxito! :)");
     })
   }
 
@@ -68,7 +67,7 @@ import { ProductoService } from '../Services/producto.service';
     this.arduinoServ.update(product).subscribe((result) =>{
       console.log("Actualizado:" + result);
       this.get();
-      alert("Actualizado con éxito!");
+      alert("Actualizado con éxito! :D");
     })
   }
 
@@ -77,7 +76,7 @@ import { ProductoService } from '../Services/producto.service';
     this.arduinoServ.delete(id).subscribe((result)=>{
       console.log("Eliminado: "+ id);
       this.get();
-      alert("Eliminado con éxito!");
+      alert("Eliminado con éxito! :0");
     })
   } 
 

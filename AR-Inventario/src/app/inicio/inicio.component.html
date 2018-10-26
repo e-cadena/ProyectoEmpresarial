@@ -7,9 +7,10 @@
       <div class="row">
         <div class="col">
         <br/>
-          <label><h3>Aquí puede buscar de forma más rápida</h3> </label>
+          <label><h3>Busca más rápido tus artículos</h3> 
           <input type="text" placeholder="Search" class="search-input">
-          <button type="button" class="btn btn-primary" (click)="get()">Buscar </button>
+          <button type="button" class="btn btn-info" (click)="get()">Buscar </button>
+        </label>
         </div>
       </div>
     </div>
@@ -23,7 +24,6 @@
           <th>Placa</th>
           <th>Version</th>
           <th>Proveedor</th>
-          <!--th>Añadir</th-->
         </tr>
       </thead>
       <tbody>
@@ -33,7 +33,6 @@
           <td>{{plataforma.placa}}</td>
           <td>{{plataforma.version}}</td>
           <td>{{proveedor.nombreProveedor}}</td>
-          <!--button type="button" class="btn btn-primary" (click)="add(product)">Añadir</button-->
         </tr>
       </tbody>
     </table>

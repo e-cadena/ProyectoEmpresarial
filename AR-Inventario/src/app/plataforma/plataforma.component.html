@@ -21,15 +21,15 @@
         <td>{{plataforma.id}}</td>
         <td>{{plataforma.placa}}</td>
         <td>{{plataforma.version}}</td>
-        <td><button type="button" class="btn btn-primary" (click)="deletePlataforma(plataforma.id)">Eliminar </button></td>
-        <td><button type="button" class="btn btn-primary" (click)="updatePlataforma(plataforma)">Actualizar </button></td>
+        <td><button type="button" class="btn btn-danger" (click)="deletePlataforma(plataforma.id)">Eliminar </button></td>
+        <td><button type="button" class="btn btn-warning" (click)="updatePlataforma(plataforma)">Actualizar </button></td>
       </tr>      
     </tbody>
   </table>
 </div>
 
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">Nuevo</button>
+<button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModalCenter">Nuevo</button>
 <!-- Modal -->
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
@@ -60,7 +60,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="addPlataforma(plataforma)">Crear </button>
+        <button type="button" class="btn btn-info" data-dismiss="modal" (click)="addPlataforma(plataforma)">Crear </button>
       </div>
     </div>
   </div>

@@ -86,24 +86,24 @@ const Producto  = sequelize.define('Productos', {
   precioUnitario: {
     type: Sequelize.STRING
   },
-  plataforma_id: {
+  placa: {
     type: Sequelize.INTEGER,
     references: {
       model: Plataforma,
       key: "id"
     },
-    associate: function(modelos){
+    associate: function(modelos) {
       modelos.Producto.hasOne(modelos.Plataforma)
     }
   },
-  proveedor_id: {
+  nombreProveedor_id: {
     type: Sequelize.INTEGER,
     references: {
       model: Proveedor,
       key: "id"
     },
-    associate: function(modelos){
-      modelos.Producto.hasOne(modelos.Proveedor)
+    associate: function(modelos) {
+      modelos.Producto.hasMany(modelos.Proveedor)
     }
   }
 });
@@ -729,8 +729,8 @@ const detalleFactura = sequelize.define('detalleFacturas', {
     Producto.build({
           nombreProducto:    producto.nombreProducto,
           precioUnitario:    producto.precioUnitario, 
-          placa:             plataforma_id.placa, 
-          nombreProveedor:   proveedor_id.nombreProveedor})
+          placa:             producto.placa, 
+          nombreProveedor:   producto.nombreProveedor})
     .save(Producto)
     .then(Producto => {
       res.send(Producto);
@@ -756,8 +756,8 @@ const detalleFactura = sequelize.define('detalleFacturas', {
         Producto.update({
           nombreProducto:    producto.nombreProducto,
           precioUnitario:    producto.precioUnitario, 
-          placa:             plataforma_id.placa, 
-          nombreProveedor:   proveedor_id.nombreProveedor})
+          placa:             plataforma.placa, 
+          nombreProveedor:   proveedor.nombreProveedor})
           .then(update =>{
             res.send(update);
           })
